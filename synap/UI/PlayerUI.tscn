@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://0kvvhlnsbhhk"]
+
+[ext_resource type="PackedScene" uid="uid://c2hxhom57jt5v" path="res://Markers/Healtbars/healthbar-player.tscn" id="1_hriva"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Healthbar" parent="." instance=ExtResource("1_hriva")]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 301.0
+offset_bottom = 82.0

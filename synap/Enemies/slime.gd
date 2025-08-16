@@ -5,6 +5,12 @@ extends CharacterBody2D
 @export var damage: int = 5
 @export var attack_range: float = 16.0
 @export var chase_delay: float = 0.2
+@export var attack_cooldown = 0.5
+@export var attack_cooldown_timer: float = 0.0
+
+@export var HP_Max = 30
+var HP = 30
+@onready var health_bar: TextureProgressBar = $Healthbar
 
 var player: Node = null
 var can_chase: bool = true
@@ -14,8 +20,13 @@ var is_dead: bool = false
 
 func _ready():
 	sprite.play("idle")
+	health_bar.init_health(HP_Max)
+
 
 func _physics_process(delta: float) -> void:
+
+	attack_cooldown_timer += delta
+
 	if is_dead:
 		return
 
@@ -34,7 +45,8 @@ func _physics_process(delta: float) -> void:
 		var dir_x = player.global_position.x - global_position.x
 		var dist_x = abs(dir_x)
 
-		if dist_x <= attack_range and is_on_floor():
+		if dist_x <= attack_range and is_on_floor() and attack_cooldown_timer >= attack_cooldown:
+			attack_cooldown_timer = 0.0
 			_attack_player()
 		else:
 			# Move horizontally only
@@ -75,3 +87,12 @@ func die():
 	sprite.play("death")
 	await sprite.animation_finished
 	queue_free()
+
+func take_damage(amount: int) -> void:
+	HP -= amount
+	health_bar.value = HP
+	modulate = Color(1, 0, 0, 0.5)  # Flash red on damage
+	await get_tree().create_timer(0.1).timeout  # Wait for 0.1 seconds
+	modulate = Color(1, 1, 1)  # Reset color
+	if HP <= 0:
+		die()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cl6rcy44pnv7"]
+[gd_scene load_steps=7 format=4 uid="uid://cl6rcy44pnv7"]
 
 [ext_resource type="Texture2D" uid="uid://ck4myvg774jj1" path="res://Assets/HallTilemap.png" id="1_f1gxm"]
 [ext_resource type="PackedScene" uid="uid://bqgrbyyubro80" path="res://Characters/Eury/Eury.tscn" id="2_kw1ir"]
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="3_kw1ir"]
+[ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="4_sga0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sga0u"]
 texture = ExtResource("1_f1gxm")
@@ -163,10 +164,10 @@ tile_set = SubResource("TileSet_eb4kn")
 
 [node name="Eury" parent="." instance=ExtResource("2_kw1ir")]
 position = Vector2(-357, -116)
-speed = 150.0
-gravity = 900.0
-attack_cooldown = 0.1
-HP_Max = 200
 
 [node name="Slime" parent="." instance=ExtResource("3_kw1ir")]
-position = Vector2(-217, -119)
+position = Vector2(-82, -130)
+
+[node name="UI" parent="." instance=ExtResource("4_sga0u")]
+
+[editable path="UI"]
