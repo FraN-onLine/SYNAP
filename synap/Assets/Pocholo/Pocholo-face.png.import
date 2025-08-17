@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyh3iog8i41na"
-path="res://.godot/imported/Eury-Ball-Sheet.png-0468e7c9c21424b5d0a4a6fb63e5857d.ctex"
+uid="uid://dik1fn6cv5qa0"
+path="res://.godot/imported/Pocholo-face.png-cb44794107506dcee5dcbf176004d62f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Eury-Ball-Sheet.png"
-dest_files=["res://.godot/imported/Eury-Ball-Sheet.png-0468e7c9c21424b5d0a4a6fb63e5857d.ctex"]
+source_file="res://Assets/Pocholo/Pocholo-face.png"
+dest_files=["res://.godot/imported/Pocholo-face.png-cb44794107506dcee5dcbf176004d62f.ctex"]
 
 [params]
 

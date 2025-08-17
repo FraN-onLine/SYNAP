@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://biqb6dv3vu0uf"]
 
 [ext_resource type="Script" uid="uid://4rpwcuk1wjrj" path="res://Enemies/slime.gd" id="1_7mise"]
-[ext_resource type="Texture2D" uid="uid://bv8dscie7ihil" path="res://Assets/Slime-Sheet.png" id="2_xwn1d"]
+[ext_resource type="Texture2D" uid="uid://bv8dscie7ihil" path="res://Assets/Enemies/Slime-Sheet.png" id="2_xwn1d"]
 [ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="3_xwn1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00swj"]

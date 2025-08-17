@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8dscie7ihil"
-path="res://.godot/imported/Slime-Sheet.png-ff104c7f17c9de8736bb1d7d8a5f6553.ctex"
+uid="uid://cwr1l23l3342l"
+path="res://.godot/imported/Eury-Sheet.png-5921ee41123f6fddc678f52827087dcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Slime-Sheet.png"
-dest_files=["res://.godot/imported/Slime-Sheet.png-ff104c7f17c9de8736bb1d7d8a5f6553.ctex"]
+source_file="res://Assets/Eury/Eury-Sheet.png"
+dest_files=["res://.godot/imported/Eury-Sheet.png-5921ee41123f6fddc678f52827087dcb.ctex"]
 
 [params]
 

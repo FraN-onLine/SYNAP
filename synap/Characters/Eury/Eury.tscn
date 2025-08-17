@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://bqgrbyyubro80"]
 
 [ext_resource type="Script" uid="uid://jyfjoj4sjn8c" path="res://Characters/Eury/eury.gd" id="1_77xyn"]
-[ext_resource type="Texture2D" uid="uid://cwr1l23l3342l" path="res://Assets/Eury-Sheet.png" id="1_i5jsj"]
+[ext_resource type="Texture2D" uid="uid://cwr1l23l3342l" path="res://Assets/Eury/Eury-Sheet.png" id="1_i5jsj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77xyn"]
 atlas = ExtResource("1_i5jsj")
@@ -201,7 +201,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -245,8 +245,9 @@ script = ExtResource("1_77xyn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"attack-1"
+animation = &"walk"
 autoplay = "idle"
+frame_progress = 0.745
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)

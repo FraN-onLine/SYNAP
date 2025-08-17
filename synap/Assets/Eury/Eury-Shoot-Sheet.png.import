@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlpvviu4adwic"
-path="res://.godot/imported/Eury-Shoot-Sheet.png-b32ed678f347169092f0275dc0d9fad4.ctex"
+path="res://.godot/imported/Eury-Shoot-Sheet.png-7aa70ce203666be5194c13219d02c878.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Eury-Shoot-Sheet.png"
-dest_files=["res://.godot/imported/Eury-Shoot-Sheet.png-b32ed678f347169092f0275dc0d9fad4.ctex"]
+source_file="res://Assets/Eury/Eury-Shoot-Sheet.png"
+dest_files=["res://.godot/imported/Eury-Shoot-Sheet.png-7aa70ce203666be5194c13219d02c878.ctex"]
 
 [params]
 
