@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy7rns33ragmt"]
+
+[ext_resource type="Texture2D" uid="uid://u7tk2ai0ss76" path="res://Assets/Profile-slot.png" id="1_6n6fo"]
+[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Pocholo/Pocholo-face.png" id="2_pmjlb"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_6n6fo")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(16, 16)
+texture = ExtResource("2_pmjlb")
