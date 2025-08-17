@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Character 
 
+@export var obtained = true
+@export var is_dead = false
 @export var slot_index: int = 0
 @export var speed: float = 150.0
 @export var gravity: float = 900.0

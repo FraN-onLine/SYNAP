@@ -11,6 +11,8 @@ extends CharacterBody2D
 @export var HP_Max = 30
 var HP = 30
 @onready var health_bar: TextureProgressBar = $Healthbar
+@export var damage_popup_scene: PackedScene
+
 
 var player: Node = null
 var can_chase: bool = true
@@ -91,6 +93,12 @@ func die():
 func take_damage(amount: int) -> void:
 	HP -= amount
 	health_bar.value = HP
+	
+	var popup := damage_popup_scene.instantiate()
+	get_tree().current_scene.add_child(popup)
+	var jitter_x := randf_range(-6, 6)
+	popup.show_damage(amount, global_position + Vector2(jitter_x, -20))
+	
 	modulate = Color(1, 0, 0, 0.5)  # Flash red on damage
 	await get_tree().create_timer(0.1).timeout  # Wait for 0.1 seconds
 	modulate = Color(1, 1, 1)  # Reset color
