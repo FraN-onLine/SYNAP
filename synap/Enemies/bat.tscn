@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=3 uid="uid://bf63iyn6i7ce0"]
+
+[ext_resource type="Script" uid="uid://mkcglpdhq7cp" path="res://Enemies/bat.gd" id="1_va2ne"]
+[ext_resource type="PackedScene" uid="uid://ds67jg2ay35um" path="res://Markers/Damage/damage_popup.tscn" id="2_i84q7"]
+[ext_resource type="Texture2D" uid="uid://c15a1dg6i1kpq" path="res://Assets/Enemies/Bat-Sheet.png" id="2_va2ne"]
+[ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="4_0g1cs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va2ne"]
+size = Vector2(25.6, 18.4211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc5xu"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g1cs"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppg8i"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srckj"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2gqn"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o2nd"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g687e"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i84q7"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvndi"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njepl"]
+atlas = ExtResource("2_va2ne")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tm1u2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc5xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g1cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppg8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srckj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2gqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o2nd")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g687e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i84q7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvndi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njepl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mise"]
+size = Vector2(10, 10)
+
+[node name="Bat" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+script = ExtResource("1_va2ne")
+damage_popup_scene = ExtResource("2_i84q7")
+
+[node name="DashHitbox" type="Area2D" parent="."]
+scale = Vector2(0.625, 0.59375)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
+position = Vector2(-4.8, -0.789474)
+shape = SubResource("RectangleShape2D_va2ne")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.625, 0.59375)
+sprite_frames = SubResource("SpriteFrames_tm1u2")
+animation = &"death"
+autoplay = "idle"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_7mise")
+
+[node name="Healthbar" parent="." instance=ExtResource("4_0g1cs")]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 11.0
+offset_bottom = -8.0

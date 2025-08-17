@@ -211,7 +211,7 @@ size = Vector2(28.25, 23.5)
 size = Vector2(31.75, 33.25)
 
 [node name="Pocholo" type="CharacterBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_jci8d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

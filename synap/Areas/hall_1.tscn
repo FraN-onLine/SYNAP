@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cl6rcy44pnv7"]
+[gd_scene load_steps=8 format=4 uid="uid://cl6rcy44pnv7"]
 
 [ext_resource type="Texture2D" uid="uid://ck4myvg774jj1" path="res://Assets/HallTilemap.png" id="1_f1gxm"]
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="3_kw1ir"]
 [ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="4_sga0u"]
 [ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="5_eb4kn"]
+[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="5_witik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sga0u"]
 texture = ExtResource("1_f1gxm")
@@ -169,5 +170,11 @@ position = Vector2(-82, -130)
 
 [node name="Pocholo" parent="." instance=ExtResource("5_eb4kn")]
 position = Vector2(-318, -132)
+
+[node name="Slime2" parent="." instance=ExtResource("3_kw1ir")]
+position = Vector2(15, -145)
+
+[node name="Bat" parent="." instance=ExtResource("5_witik")]
+position = Vector2(-220, -121)
 
 [editable path="UI"]

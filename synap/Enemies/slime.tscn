@@ -103,7 +103,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mise"]
 size = Vector2(18, 14)
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_7mise")
 damage_popup_scene = ExtResource("2_00swj")
