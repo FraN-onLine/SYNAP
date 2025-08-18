@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ouquln5tyaqk"]
+
+[ext_resource type="Script" uid="uid://4ai1f5fow33e" path="res://Enemies/spinner_bullet.gd" id="1_5g241"]
+[ext_resource type="Texture2D" uid="uid://bnvow0dbnxpis" path="res://Assets/Enemies/SpinnerBullet-Sheet.png" id="1_g3uv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g241"]
+atlas = ExtResource("1_g3uv2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqxau"]
+atlas = ExtResource("1_g3uv2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbc16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g241")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqxau")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3uv2"]
+size = Vector2(19, 11)
+
+[node name="Spinner Bullet" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_5g241")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pbc16")
+frame_progress = 0.893518
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_g3uv2")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://0kvvhlnsbhhk"]
+[gd_scene load_steps=5 format=3 uid="uid://0kvvhlnsbhhk"]
 
 [ext_resource type="PackedScene" uid="uid://c2hxhom57jt5v" path="res://Markers/Healtbars/healthbar-player.tscn" id="1_hriva"]
 [ext_resource type="PackedScene" uid="uid://dy7rns33ragmt" path="res://Markers/Profiles/Profile.tscn" id="2_0gjvn"]
 [ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="3_rjpm0"]
+[ext_resource type="Texture2D" uid="uid://cxcppbcwaltng" path="res://Assets/Eury/Eury-face.png" id="3_yaiyv"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -16,6 +17,9 @@ offset_bottom = 97.0
 position = Vector2(52, 52.75)
 scale = Vector2(2.875, 3.07812)
 
+[node name="Sprite2D" parent="Sprite2D/CenterContainer" index="0"]
+texture = ExtResource("3_yaiyv")
+
 [node name="NameLabel" type="Label" parent="."]
 offset_left = 3.0
 offset_top = 99.0
@@ -24,7 +28,7 @@ offset_bottom = 130.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")
 theme_override_font_sizes/font_size = 24
-text = "Pocholo"
+text = "eury"
 
 [node name="HPLabel" type="Label" parent="."]
 offset_left = 222.0
@@ -35,3 +39,5 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")
 theme_override_font_sizes/font_size = 24
 text = "HP: 200/200"
+
+[editable path="Sprite2D"]

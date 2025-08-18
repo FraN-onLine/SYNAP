@@ -23,8 +23,6 @@ var attack_cd_timer: float = 0.0
 var attack_areas: Array[Area2D]
 
 func _ready():
-	$AttackArea1.body_entered.connect(_on_attack_area_entered.bind(0))
-	$AttackArea2.body_entered.connect(_on_attack_area_entered.bind(1))
 	$"../UI".get_node("Healthbar").init_health(MaxHP)
 
 
@@ -129,7 +127,7 @@ func _disable_all_attack_areas() -> void:
 				shape.disabled = true
 
 func _on_attack_area_entered(body: Node, idx: int) -> void:
-	if combo_step - 1 == idx and body.has_method("take_damage"):
+	if combo_step - 1 == idx and body.has_method("take_damage") and !body.is_in_group("player"):
 		body.take_damage(attack_damage[idx])
 
 func take_damage(amount):
