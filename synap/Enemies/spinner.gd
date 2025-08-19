@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # ---- Stats ----
-@export var HP_Max: int = 20
-var HP: int = 20
+@export var HP_Max: int = 25
+var HP: int = 25
 @export var damage: int = 3.5
 @export var bullet_scene: PackedScene
 @export var damage_popup_scene: PackedScene

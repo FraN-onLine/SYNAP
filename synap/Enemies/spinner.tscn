@@ -173,7 +173,8 @@ bullet_scene = ExtResource("2_vomno")
 damage_popup_scene = ExtResource("2_e8p01")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.625, 0.59375)
+position = Vector2(1, -2)
+scale = Vector2(0.796875, 0.859375)
 sprite_frames = SubResource("SpriteFrames_tm1u2")
 animation = &"attack"
 autoplay = "idle"
@@ -186,9 +187,9 @@ shape = SubResource("RectangleShape2D_7mise")
 
 [node name="Healthbar" parent="." instance=ExtResource("4_xiogw")]
 offset_left = -10.0
-offset_top = -20.0
+offset_top = -24.0
 offset_right = 11.0
-offset_bottom = -8.0
+offset_bottom = -12.0
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 3.0
