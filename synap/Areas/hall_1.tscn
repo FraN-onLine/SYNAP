@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="3_kw1ir"]
 [ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="4_sga0u"]
 [ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="5_witik"]
-[ext_resource type="PackedScene" uid="uid://bpsuso7fninag" path="res://Characters/Ethos/Ethos.tscn" id="6_n40hx"]
 [ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="6_witik"]
+[ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="7_n40hx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n40hx"]
 texture = ExtResource("1_witik")
@@ -98,8 +98,11 @@ position = Vector2(-220, -121)
 [node name="Spinner" parent="." instance=ExtResource("6_witik")]
 position = Vector2(-55, -105)
 
-[node name="Ethos" parent="." instance=ExtResource("6_n40hx")]
-position = Vector2(-302, -108)
+[node name="CharacterManager" parent="." instance=ExtResource("7_n40hx")]
+
+[node name="SpawnPoint" parent="CharacterManager" index="0"]
+position = Vector2(-307, -95)
 
 [editable path="UI"]
 [editable path="UI/Sprite2D"]
+[editable path="CharacterManager"]

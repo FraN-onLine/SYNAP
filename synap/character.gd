@@ -5,7 +5,7 @@ class_name Character
 @export var obtained = true
 @export var is_dead = false
 @export var unit_name = "Name"
-@export var character_profile: Sprite2D = null
+@export var character_profile: Texture
 @export var slot_index: int = 0
 @export var speed: float = 150.0
 @export var gravity: float = 900.0
@@ -134,8 +134,8 @@ func _on_attack_area_entered(body: Node, idx: int) -> void:
 
 func take_damage(amount):
 	HP -= amount
-	$"../UI".get_node("Healthbar")._set_health(HP)
-	$"../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
+	$"../../UI".get_node("Healthbar")._set_health(HP)
+	$"../../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
 	modulate = Color(1, 0, 0, 0.75)  # Flash red on damage
 	await get_tree().create_timer(0.1).timeout  # Wait for 0.1 seconds
 	modulate = Color(1, 1, 1)  # Reset color
