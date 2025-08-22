@@ -10,3 +10,6 @@ script = ExtResource("1_yqg6d")
 character_scenes = Array[PackedScene]([ExtResource("2_uojcb"), ExtResource("3_as0do"), ExtResource("4_sxlor")])
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.2, 4.2)

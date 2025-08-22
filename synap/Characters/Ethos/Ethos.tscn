@@ -349,9 +349,6 @@ frame_progress = 1.0
 position = Vector2(2.5, 4.5)
 shape = SubResource("RectangleShape2D_77xyn")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.2, 4.2)
-
 [node name="AttackArea1" type="Area2D" parent="."]
 collision_layer = 3
 collision_mask = 3

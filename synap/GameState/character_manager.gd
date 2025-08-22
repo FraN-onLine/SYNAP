@@ -17,6 +17,10 @@ func _ready() -> void:
 	_init_all_slots()
 	_activate(starting_index, _spawn.global_position)
 
+func _physics_process(delta: float) -> void:
+	if _active and _active.is_inside_tree():
+		$Camera2D.global_position = _active.global_position
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("character_1"):
 		switch_to(0)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://0kvvhlnsbhhk"]
+[gd_scene load_steps=6 format=3 uid="uid://0kvvhlnsbhhk"]
 
+[ext_resource type="Script" uid="uid://bul8mbvaum7g" path="res://UI/player_ui.gd" id="1_6t71k"]
 [ext_resource type="PackedScene" uid="uid://c2hxhom57jt5v" path="res://Markers/Healtbars/healthbar-player.tscn" id="1_hriva"]
 [ext_resource type="PackedScene" uid="uid://dy7rns33ragmt" path="res://Markers/Profiles/Profile.tscn" id="2_0gjvn"]
 [ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="3_rjpm0"]
+[ext_resource type="PackedScene" uid="uid://bmdndhejyvsos" path="res://UI/player_slot.tscn" id="4_yaiyv"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_6t71k")
 
 [node name="Healthbar" parent="." instance=ExtResource("1_hriva")]
 offset_left = 98.0
@@ -35,5 +38,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")
 theme_override_font_sizes/font_size = 24
 text = "HP: 200/200"
+
+[node name="Characters" type="VBoxContainer" parent="."]
+offset_left = 6.0
+offset_top = 234.0
+offset_right = 228.0
+offset_bottom = 527.0
+theme_override_constants/separation = 100
+
+[node name="Player Slot1" parent="Characters" instance=ExtResource("4_yaiyv")]
+layout_mode = 2
+
+[node name="Player Slot2" parent="Characters" instance=ExtResource("4_yaiyv")]
+layout_mode = 2
+
+[node name="Player Slot3" parent="Characters" instance=ExtResource("4_yaiyv")]
+layout_mode = 2
 
 [editable path="Sprite2D"]
