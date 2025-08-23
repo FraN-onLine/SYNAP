@@ -1,7 +1,8 @@
-[gd_scene load_steps=48 format=3 uid="uid://bpsuso7fninag"]
+[gd_scene load_steps=49 format=3 uid="uid://bpsuso7fninag"]
 
 [ext_resource type="Script" uid="uid://bjjr6yi1088bv" path="res://Characters/Ethos/ethos.gd" id="1_7de1i"]
 [ext_resource type="Texture2D" uid="uid://bd8bn3ht2yed6" path="res://Assets/Ethos/Ethos-Sheet.png" id="1_u3a01"]
+[ext_resource type="Texture2D" uid="uid://ddd2e6w8u2d2f" path="res://Assets/Ethos/Ethos-face.png" id="2_hjhh8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7de1i"]
 atlas = ExtResource("1_u3a01")
@@ -336,6 +337,7 @@ size = Vector2(37.75, 22.25)
 collision_layer = 2
 script = ExtResource("1_7de1i")
 unit_name = "Ethos"
+character_profile = ExtResource("2_hjhh8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)
