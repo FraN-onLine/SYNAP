@@ -1,13 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://lt1rpxa4mvbj"]
+[gd_scene load_steps=2 format=3 uid="uid://lt1rpxa4mvbj"]
 
-[ext_resource type="Script" uid="uid://6f6oc6qag6fw" path="res://GameState/character_manager.gd" id="1_yqg6d"]
-[ext_resource type="PackedScene" uid="uid://bpsuso7fninag" path="res://Characters/Ethos/Ethos.tscn" id="2_uojcb"]
-[ext_resource type="PackedScene" uid="uid://bqgrbyyubro80" path="res://Characters/Eury/Eury.tscn" id="3_as0do"]
-[ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="4_sxlor"]
+[ext_resource type="Script" uid="uid://6f6oc6qag6fw" path="res://UI/character_manager.gd" id="1_yqg6d"]
 
 [node name="CharacterManager" type="Node2D"]
 script = ExtResource("1_yqg6d")
-character_scenes = Array[PackedScene]([ExtResource("2_uojcb"), ExtResource("3_as0do"), ExtResource("4_sxlor")])
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 

@@ -1,14 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://cl6rcy44pnv7"]
+[gd_scene load_steps=9 format=4 uid="uid://cl6rcy44pnv7"]
 
 [ext_resource type="Texture2D" uid="uid://cubukau4vx6ek" path="res://Assets/HallTimeMap-1.png" id="1_witik"]
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="3_kw1ir"]
 [ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="4_sga0u"]
 [ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="5_witik"]
 [ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="6_witik"]
-[ext_resource type="PackedScene" uid="uid://bpsuso7fninag" path="res://Characters/Ethos/Ethos.tscn" id="7_g8up6"]
 [ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="7_n40hx"]
-[ext_resource type="PackedScene" uid="uid://bqgrbyyubro80" path="res://Characters/Eury/Eury.tscn" id="8_h4cyi"]
-[ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="9_2kr61"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n40hx"]
 texture = ExtResource("1_witik")
@@ -102,7 +99,6 @@ position = Vector2(-220, -121)
 position = Vector2(-55, -105)
 
 [node name="CharacterManager" parent="." instance=ExtResource("7_n40hx")]
-character_scenes = Array[PackedScene]([ExtResource("7_g8up6"), ExtResource("8_h4cyi"), ExtResource("9_2kr61")])
 
 [node name="SpawnPoint" parent="CharacterManager" index="0"]
 position = Vector2(-307, -95)

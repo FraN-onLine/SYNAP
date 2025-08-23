@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var game_state = Global
+@onready var chmanager = $"../CharacterManager"
 
-@onready var sprite = $Sprite2D
+@onready var sprite = $Sprite2D/CenterContainer/Sprite2D
 @onready var name_label = $NameLabel
 @onready var hp_label = $HPLabel
 @onready var healthbar = $Healthbar
@@ -13,25 +13,24 @@ extends CanvasLayer
 ]
 
 func _ready():
-	if game_state.has_signal("active_character_changed"):
-		game_state.connect("active_character_changed", _on_active_character_changed)
-	if game_state.has_signal("deployed_characters_updated"):
-		game_state.connect("deployed_characters_updated", _on_deployed_characters_updated)
-	# Initial UI update
-	_on_active_character_changed(game_state.active_character)
-	_on_deployed_characters_updated(game_state.deployed_characters)
+	if chmanager.has_signal("active_character_changed"):
+		chmanager.connect("active_character_changed", _on_active_character_changed)
 
-func _on_active_character_changed(character):
+func _on_active_character_changed(character, index: int) -> void:
 	if character:
 		sprite.texture = character.character_profile
 		name_label.text = character.unit_name
-		hp_label.text = "HP: %d/%d" % [character.HP, character.MAXHP]
-		healthbar.set_value(character.HP, character.MAXHP)
+		hp_label.text = "HP: %d/%d" % [character.HP, character.MaxHP]
+		healthbar.max_value = character.MaxHP
+		healthbar.value = character.HP
 	else:
 		sprite.texture = null
 		name_label.text = ""
 		hp_label.text = ""
 		healthbar.set_value(0)
+
+	slots[index].modulate = Color("#ab9cffc6")
+	
 
 func _on_deployed_characters_updated(characters):
 	for i in range(3):

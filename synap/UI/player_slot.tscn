@@ -17,6 +17,7 @@ scale = Vector2(2.15625, 2.125)
 texture = ExtResource("1_jcprm")
 
 [node name="Name" type="Label" parent="."]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 4.0
 offset_right = 132.0
@@ -33,6 +34,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_0enyi")
 
 [node name="Healthbar" parent="." instance=ExtResource("4_f1kw4")]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 22.0
 offset_right = 139.0

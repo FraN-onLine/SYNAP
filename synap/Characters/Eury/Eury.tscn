@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqgrbyyubro80"]
+[gd_scene load_steps=37 format=3 uid="uid://bqgrbyyubro80"]
 
 [ext_resource type="Script" uid="uid://jyfjoj4sjn8c" path="res://Characters/Eury/eury.gd" id="1_77xyn"]
 [ext_resource type="Texture2D" uid="uid://cwr1l23l3342l" path="res://Assets/Eury/Eury-Sheet.png" id="1_i5jsj"]
+[ext_resource type="Texture2D" uid="uid://cxcppbcwaltng" path="res://Assets/Eury/Eury-face.png" id="2_sld2e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77xyn"]
 atlas = ExtResource("1_i5jsj")
@@ -242,6 +243,8 @@ size = Vector2(58.1875, 9.8125)
 [node name="Eury" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_77xyn")
+unit_name = "Eury"
+character_profile = ExtResource("2_sld2e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f4bps")
