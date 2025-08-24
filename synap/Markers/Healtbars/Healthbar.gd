@@ -11,7 +11,6 @@ func _set_health(new_health):
 	
 	if health <= 0:
 		value = 0
-		queue_free()
 
 
 # Called when the node enters the scene tree for the first time.
