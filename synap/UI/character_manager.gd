@@ -2,6 +2,8 @@ extends Node2D
 
 class_name CharacterManager
 
+@onready var player_UI = $"../UI"
+
 @export var character_scenes: Array[PackedScene] = [] # drag your character scenes
 var active_character: Node = null
 @export_range(0, 2) var starting_index: int = 0 # who starts first
@@ -55,58 +57,77 @@ func _init_all_slots() -> void:
 			"alive": true,
 		})
 
+	player_UI.set_deployed_characters()
+
 # ---------------------------------------------------
 # SWITCHING
 # ---------------------------------------------------
 
 func switch_to(index: int) -> void:
-	if index == active_index: return
-	if index < 0 or index >= slots.size(): return
-	if slots[index] == null: return
-	if not slots[index]["alive"]: return
-	active_character = slots[index]["instance"]
+    if index == active_index: return
+    if index < 0 or index >= slots.size(): return
+    if slots[index] == null: return
+    if not slots[index]["alive"]: return
 
-	var target_pos = spawn.global_position
-	if active_character and active_character.is_inside_tree():
-		target_pos = active_character.global_position
+    var previous_position = spawn.global_position
+    if active_character and active_character.is_inside_tree():
+        previous_position = active_character.global_position
 
-	_park_current_and_save()
-	_activate(index, target_pos)
+    _park_current_and_save()
+    _activate(index, previous_position)
 
 func _park_current_and_save() -> void:
-	if active_character == null: return
-	var idx = active_index
-	slots[idx]["hp"] = active_character.HP
-	_set_node_active(active_character, false)
-	active_character.visible = false
-	active_character.remove_from_group("player")
-	active_character = null
-	active_index = -1
+    if active_character == null or active_index < 0 or active_index >= slots.size():
+        return
+
+    # Save HP to slot
+    slots[active_index]["hp"] = active_character.HP
+
+    # Remove from player group
+    active_character.remove_from_group("player")
+
+    # Hide character and disable processing
+    active_character.visible = false
+    active_character.set_process(false)
+    active_character.set_physics_process(false)
+    if active_character.has_method("set_process_input"):
+        active_character.set_process_input(false)
+    if active_character.has_method("set_process_unhandled_input"):
+        active_character.set_process_unhandled_input(false)
+    if active_character.has_method("set_process_unhandled_key_input"):
+        active_character.set_process_unhandled_key_input(false)
+
+    # If CharacterBody2D, stop movement
+    if active_character is CharacterBody2D:
+        active_character.velocity = Vector2.ZERO
+
+    # Do NOT clear active_character or active_index here!
+    # Let _activate handle updating these references.
 
 func _activate(index: int, world_position: Vector2) -> void:
-	var slot = slots[index]
-	var inst = slot["instance"]
-	active_character = inst
+    var slot = slots[index]
+    var inst = slot["instance"]
+    active_character = inst
 
-	# If character died and freed, reinstantiate
-	if inst == null and slot["alive"]:
-		inst = slot["scene"].instantiate()
-		add_child(inst)
-		slot["instance"] = inst
+    # If character died and freed, reinstantiate
+    if inst == null and slot["alive"]:
+        inst = slot["scene"].instantiate()
+        add_child(inst)
+        slot["instance"] = inst
 
-	inst.MaxHP = slot["max_hp"]
-	inst.HP = slot["hp"]
-	inst.global_position = world_position
-	if inst is CharacterBody2D:
-		inst.velocity = Vector2.ZERO
+    inst.MaxHP = slot["max_hp"]
+    inst.HP = slot["hp"]
+    inst.global_position = world_position
+    if inst is CharacterBody2D:
+        inst.velocity = Vector2.ZERO
 
-	_set_node_active(inst, true)
-	inst.visible = true
-	inst.add_to_group("player")
+    _set_node_active(inst, true)
+    inst.visible = true
+    inst.add_to_group("player")
 
-	active_character = inst
-	active_index = index
-	emit_signal("active_character_changed", inst, index)
+    active_character = inst
+    active_index = index
+    emit_signal("active_character_changed", inst, index)
 
 # ---------------------------------------------------
 # HELPERS

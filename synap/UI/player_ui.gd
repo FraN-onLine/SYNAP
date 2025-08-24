@@ -15,6 +15,7 @@ extends CanvasLayer
 func _ready():
 	if chmanager.has_signal("active_character_changed"):
 		chmanager.connect("active_character_changed", _on_active_character_changed)
+	set_deployed_characters()
 
 func _on_active_character_changed(character, index: int) -> void:
 	if character:
@@ -29,12 +30,23 @@ func _on_active_character_changed(character, index: int) -> void:
 		hp_label.text = ""
 		healthbar.set_value(0)
 
-	slots[index].modulate = Color("#ab9cffc6")
+	for i in range(3):
+		if i == index:
+			slots[index].modulate = Color("#ab9cffc6")
+		else:
+			slots[i].modulate = Color("#ffffffc6")
 	
 
-func _on_deployed_characters_updated(characters):
+func set_deployed_characters() -> void:
 	for i in range(3):
-		if i < len(characters) and characters[i]:
-			slots[i].update_slot(characters[i])
+		var slot = slots[i]
+		var charac_info = chmanager.slots[i] if i < chmanager.slots.size() else null
+		if charac_info and charac_info["instance"]:
+			var charac = charac_info["instance"]
+			slot.get_node("Icon").texture = charac.character_profile
+			slot.get_node("Name").text = charac.unit_name
+			slot.get_node("Healthbar").max_value = charac.MaxHP
+			slot.get_node("Healthbar").value = charac.HP
+			slot.visible = true
 		else:
-			slots[i].clear_slot()
+			slot.visible = false
