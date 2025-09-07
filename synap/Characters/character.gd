@@ -2,19 +2,20 @@ extends CharacterBody2D
 
 class_name Character 
 
-@export var obtained = true
-@export var is_dead = false
-@export var unit_name = "Name"
-@export var character_profile: Texture
-@export var slot_index: int = 0
-@export var speed: float = 150.0
-@export var gravity: float = 900.0
-@export var attack_cooldown: float = 0.15
-@export var attack_damage: Array[int]
-@export var crit_rate = 0.05
+@export var character_data: char_data
+var obtained = true
+var is_dead = false
+var unit_name = "Name"
+var character_profile: Texture
+var slot_index: int = 0
+var speed: float = 150.0
+var gravity: float = 900.0
+var attack_cooldown: float = 0.15
+var attack_damage: Array[int]
+var crit_rate = 0.05
 
-@export var MaxHP = 200
-@export var HP = 200
+var MaxHP = 200
+var HP = 200
 var combo_step: int = 0
 var combo_count = 2
 var attacking: bool = false
@@ -25,6 +26,19 @@ var attack_cd_timer: float = 0.0
 var attack_areas: Array[Area2D]
 
 func _ready():
+	obtained = character_data.obtained
+	is_dead = character_data.is_dead
+	unit_name = character_data.unit_name
+	character_profile = character_data.character_profile
+	slot_index = character_data.slot_index
+	speed = character_data.speed
+	gravity = character_data.gravity
+	attack_cooldown = character_data.attack_cooldown
+	attack_damage = character_data.attack_damage
+	crit_rate = character_data.crit_rate
+	MaxHP = character_data.MaxHP
+	HP = character_data.HP
+	combo_count = character_data.combo_count
 	$"../UI".get_node("Healthbar").init_health(MaxHP)
 
 
@@ -133,16 +147,21 @@ func _on_attack_area_entered(body: Node, idx: int) -> void:
 		body.take_damage(attack_damage[idx])
 
 func take_damage(amount):
-	HP -= amount
-	$"../../UI".get_node("Healthbar")._set_health(HP)
-	$"../../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
-	modulate = Color(1, 0, 0, 0.75)  # Flash red on damage
-	await get_tree().create_timer(0.1).timeout  # Wait for 0.1 seconds
-	modulate = Color(1, 1, 1)  # Reset color
-	if HP <= 0:
-		die()
+    HP -= amount
+    character_data.HP = HP # <-- update resource
+    $"../../UI".get_node("Healthbar")._set_health(HP)
+    $"../../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
+    modulate = Color(1, 0, 0, 0.75)
+    await get_tree().create_timer(0.1).timeout
+    modulate = Color(1, 1, 1)
+    if HP <= 0:
+        is_dead = true
+        character_data.is_dead = true # <-- update resource
+        die()
 
 func die() -> void:
-	print("Player died!")
-	# Play death animation if you have one
+	is_dead = true
+	character_data.is_dead = true # <-- update resource
+	sprite.play("death")
+	await sprite.animation_finished
 	queue_free()  # or handle respawn here

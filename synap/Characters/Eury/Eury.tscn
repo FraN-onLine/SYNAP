@@ -325,7 +325,7 @@ character_profile = ExtResource("2_sld2e")
 sprite_frames = SubResource("SpriteFrames_f4bps")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.449655
+frame_progress = 0.629985
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)
