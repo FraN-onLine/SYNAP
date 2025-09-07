@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj706pnxktm44"
-path="res://.godot/imported/Pocholo-Sheet.png-8c3e0e398a3f91919b67acddf5985bae.ctex"
+uid="uid://ddd2e6w8u2d2f"
+path="res://.godot/imported/Ethos-face.png-50a6b05b12ae7f294bb0660f9c0eb1fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Pocholo/Pocholo-Sheet.png"
-dest_files=["res://.godot/imported/Pocholo-Sheet.png-8c3e0e398a3f91919b67acddf5985bae.ctex"]
+source_file="res://Assets/Characters/Ethos/Ethos-face.png"
+dest_files=["res://.godot/imported/Ethos-face.png-50a6b05b12ae7f294bb0660f9c0eb1fa.ctex"]
 
 [params]
 

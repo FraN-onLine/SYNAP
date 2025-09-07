@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxcppbcwaltng"
-path="res://.godot/imported/Eury-face.png-2b20c182f5ac123bdf9749aea12645ce.ctex"
+uid="uid://cyh3iog8i41na"
+path="res://.godot/imported/Eury-Ball-Sheet.png-37a3f84430f1ee1adbd52bc8d4e755ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Eury/Eury-face.png"
-dest_files=["res://.godot/imported/Eury-face.png-2b20c182f5ac123bdf9749aea12645ce.ctex"]
+source_file="res://Assets/Characters/Eury/Eury-Ball-Sheet.png"
+dest_files=["res://.godot/imported/Eury-Ball-Sheet.png-37a3f84430f1ee1adbd52bc8d4e755ab.ctex"]
 
 [params]
 

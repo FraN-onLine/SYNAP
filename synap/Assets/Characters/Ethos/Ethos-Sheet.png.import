@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlpvviu4adwic"
-path="res://.godot/imported/Eury-Shoot-Sheet.png-7aa70ce203666be5194c13219d02c878.ctex"
+uid="uid://bd8bn3ht2yed6"
+path="res://.godot/imported/Ethos-Sheet.png-6dfae9c8f134ce264d5bff944fb6b5ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Eury/Eury-Shoot-Sheet.png"
-dest_files=["res://.godot/imported/Eury-Shoot-Sheet.png-7aa70ce203666be5194c13219d02c878.ctex"]
+source_file="res://Assets/Characters/Ethos/Ethos-Sheet.png"
+dest_files=["res://.godot/imported/Ethos-Sheet.png-6dfae9c8f134ce264d5bff944fb6b5ba.ctex"]
 
 [params]
 

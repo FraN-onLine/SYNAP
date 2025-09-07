@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c77wq0dussyjh" path="res://UI/player_slot.gd" id="1_e4gw8"]
 [ext_resource type="Texture2D" uid="uid://16og5uf6m8ms" path="res://Assets/Player-Slot.png" id="1_jcprm"]
 [ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="2_e4gw8"]
-[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Pocholo/Pocholo-face.png" id="3_0enyi"]
+[ext_resource type="Texture2D" path="res://Assets/Pocholo/Pocholo-face.png" id="3_0enyi"]
 [ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="4_f1kw4"]
 
 [node name="Player Slot" type="Control"]

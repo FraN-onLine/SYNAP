@@ -16,7 +16,7 @@ var active_index: int = -1
 signal active_character_changed(character: Node, index: int)
 
 func _ready() -> void:
-	_init_all_slots()
+	_init_all_slots() 
 	_activate(starting_index, spawn.global_position)
 
 func _physics_process(delta: float) -> void:
