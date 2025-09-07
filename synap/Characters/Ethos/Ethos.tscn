@@ -1,9 +1,6 @@
-[gd_scene load_steps=48 format=3 uid="uid://bpsuso7fninag"]
+[gd_scene load_steps=47 format=3 uid="uid://bpsuso7fninag"]
 
 [ext_resource type="Script" uid="uid://bjjr6yi1088bv" path="res://Characters/Ethos/ethos.gd" id="1_7de1i"]
-
-[sub_resource type="Resource" id="Resource_u3a01"]
-metadata/__load_path__ = "res://Assets/Ethos/Ethos-face.png"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7de1i"]
 region = Rect2(288, 0, 36, 36)
@@ -296,8 +293,6 @@ size = Vector2(37.75, 22.25)
 [node name="Ethos" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_7de1i")
-unit_name = "Ethos"
-character_profile = SubResource("Resource_u3a01")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)

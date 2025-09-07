@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="char_data" load_steps=3 format=3 uid="uid://c51qkwvuygjjb"]
+
+[ext_resource type="Texture2D" uid="uid://cxcppbcwaltng" path="res://Assets/Characters/Eury/Eury-face.png" id="1_e2uq7"]
+[ext_resource type="Script" uid="uid://d1a6l6gvd7616" path="res://Characters/character_resource.gd" id="2_wumni"]
+
+[resource]
+script = ExtResource("2_wumni")
+obtained = true
+is_dead = false
+unit_name = "Eury"
+character_profile = ExtResource("1_e2uq7")
+slot_index = 0
+speed = 150.0
+gravity = 900.0
+attack_cooldown = 0.15
+attack_damage = Array[int]([10, 10, 15])
+crit_rate = 0.05
+MaxHP = 200
+HP = 200
+combo_count = 3
+metadata/_custom_type_script = "uid://d1a6l6gvd7616"

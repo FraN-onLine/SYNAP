@@ -1,8 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://b8mdbcf4twky"]
+[gd_scene load_steps=32 format=3 uid="uid://b8mdbcf4twky"]
 
 [ext_resource type="Script" uid="uid://cyjuot5i07wog" path="res://Characters/Pocholo/pocholo.gd" id="1_jci8d"]
 [ext_resource type="Texture2D" uid="uid://bj706pnxktm44" path="res://Assets/Characters/Pocholo/Pocholo-Sheet.png" id="2_ejihh"]
-[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Characters/Pocholo/Pocholo-face.png" id="2_qrnxk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5u0o"]
 atlas = ExtResource("2_ejihh")
@@ -214,8 +213,6 @@ size = Vector2(31.75, 33.25)
 [node name="Pocholo" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_jci8d")
-unit_name = "Pocholo"
-character_profile = ExtResource("2_qrnxk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)

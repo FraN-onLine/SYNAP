@@ -17,6 +17,17 @@ func _ready():
 		chmanager.connect("active_character_changed", _on_active_character_changed)
 	set_deployed_characters()
 
+func _process(_delta: float) -> void:
+	for i in range(3):
+		var slot = slots[i]
+		var charac_info = chmanager.slots[i] if i < chmanager.slots.size() else null
+		if charac_info and charac_info["instance"]:
+			var charac = charac_info["instance"]
+			slot.get_node("Healthbar").value = charac.HP
+			slot.visible = true
+		else:
+			slot.visible = false
+
 func _on_active_character_changed(character, index: int) -> void:
 	if character:
 		sprite.texture = character.character_profile

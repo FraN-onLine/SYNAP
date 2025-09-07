@@ -3,10 +3,10 @@ extends CharacterBody2D
 class_name Character 
 
 @export var character_data: char_data
-var obtained = true
+@export var obtained = true
 var is_dead = false
-var unit_name = "Name"
-var character_profile: Texture
+@export var unit_name = "Name"
+@export var character_profile: Texture
 var slot_index: int = 0
 var speed: float = 150.0
 var gravity: float = 900.0
@@ -14,7 +14,7 @@ var attack_cooldown: float = 0.15
 var attack_damage: Array[int]
 var crit_rate = 0.05
 
-var MaxHP = 200
+@export var MaxHP = 200
 var HP = 200
 var combo_step: int = 0
 var combo_count = 2
@@ -43,6 +43,9 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+
 	var direction_x := 0.0
 
 	if not attacking:
@@ -147,17 +150,19 @@ func _on_attack_area_entered(body: Node, idx: int) -> void:
 		body.take_damage(attack_damage[idx])
 
 func take_damage(amount):
-    HP -= amount
-    character_data.HP = HP # <-- update resource
-    $"../../UI".get_node("Healthbar")._set_health(HP)
-    $"../../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
-    modulate = Color(1, 0, 0, 0.75)
-    await get_tree().create_timer(0.1).timeout
-    modulate = Color(1, 1, 1)
-    if HP <= 0:
-        is_dead = true
-        character_data.is_dead = true # <-- update resource
-        die()
+	if is_dead:
+		return
+	HP -= amount
+	character_data.HP = HP # <-- update resource
+	$"../../UI".get_node("Healthbar")._set_health(HP)
+	$"../../UI".get_node("HPLabel").text = "HP: " + str(HP) + "/" + str(MaxHP)
+	modulate = Color(1, 0, 0, 0.75)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color(1, 1, 1)
+	if HP <= 0:
+		is_dead = true
+		character_data.is_dead = true # <-- update resource
+		die()
 
 func die() -> void:
 	is_dead = true
