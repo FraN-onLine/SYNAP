@@ -21,6 +21,9 @@ var combo_count = 2
 var attacking: bool = false
 var queue_next_attack: bool = false
 var attack_cd_timer: float = 0.0
+var dashing = false
+var dash_speed: float = 220.0
+var dash_cd_timer: float = 0.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 var attack_areas: Array[Area2D]
@@ -48,7 +51,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction_x := 0.0
 
-	if not attacking:
+	if not attacking and not dashing:
 		if Input.is_action_pressed("move_right"):
 			direction_x += 1
 		if Input.is_action_pressed("move_left"):
@@ -60,8 +63,18 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 
-	# Horizontal movement
-	velocity.x = direction_x * speed
+	 # Horizontal movement
+	if not dashing:
+		velocity.x = direction_x * speed
+
+	# Dash input
+	if Input.is_action_just_pressed("ui_accept") and dash_cd_timer <= 0 and not dashing:
+		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
+
+	# Skill input
+	if Input.is_action_just_pressed("skill_tapped") and not attacking and not dashing:
+		skill()
+
 	move_and_slide()
 
 	# Flip sprite
@@ -78,13 +91,14 @@ func _physics_process(delta: float) -> void:
 	# Cooldowns
 	if attack_cd_timer > 0:
 		attack_cd_timer -= delta
-
+	if dash_cd_timer > 0:
+		dash_cd_timer -= delta
 	# Attack input
 	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0:
 		_handle_attack()
 
 	# Idle/walk anim
-	if not attacking:
+	if not attacking and not dashing:
 		if direction_x != 0:
 			if sprite.animation != "walk":
 				sprite.play("walk")
@@ -163,6 +177,27 @@ func take_damage(amount):
 		is_dead = true
 		character_data.is_dead = true # <-- update resource
 		die()
+
+func _start_dash(direction: int) -> void:
+	dashing = true
+	dash_cd_timer = 2.0
+	velocity.x = direction * dash_speed
+	sprite.play("dash")
+	if sprite.is_connected("animation_finished", Callable(self, "_stop_dash")):
+		sprite.disconnect("animation_finished", Callable(self, "_stop_dash"))
+	sprite.connect("animation_finished", Callable(self, "_stop_dash"))
+
+func _stop_dash() -> void:
+	dashing = false
+	velocity.x = 0
+	if not attacking:
+		sprite.play("idle")
+	if sprite.is_connected("animation_finished", Callable(self, "_stop_dash")):
+		sprite.disconnect("animation_finished", Callable(self, "_stop_dash"))
+
+func skill():
+	# Implement your skill logic here
+	print("Skill activated!")
 
 func die() -> void:
 	is_dead = true
