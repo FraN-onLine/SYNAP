@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="char_data" load_steps=3 format=3 uid="uid://dodfhrmr35ka6"]
+
+[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Characters/Pocholo/Pocholo-face.png" id="1_thnay"]
+[ext_resource type="Script" uid="uid://d1a6l6gvd7616" path="res://Characters/character_resource.gd" id="2_h84cg"]
+
+[resource]
+script = ExtResource("2_h84cg")
+obtained = true
+is_dead = false
+unit_name = "Pocholo"
+character_profile = ExtResource("1_thnay")
+slot_index = 0
+speed = 150.0
+gravity = 900.0
+attack_cooldown = 0.15
+attack_damage = Array[int]([33, 3])
+crit_rate = 0.05
+MaxHP = 200
+HP = 200
+combo_count = 2
+metadata/_custom_type_script = "uid://d1a6l6gvd7616"

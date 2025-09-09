@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c77wq0dussyjh" path="res://UI/player_slot.gd" id="1_e4gw8"]
 [ext_resource type="Texture2D" uid="uid://16og5uf6m8ms" path="res://Assets/Player-Slot.png" id="1_jcprm"]
 [ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="2_e4gw8"]
-[ext_resource type="Texture2D" path="res://Assets/Pocholo/Pocholo-face.png" id="3_0enyi"]
+[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Characters/Pocholo/Pocholo-face.png" id="4_e4gw8"]
 [ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="4_f1kw4"]
 
 [node name="Player Slot" type="Control"]
@@ -26,12 +26,12 @@ scale = Vector2(0.8, 0.8)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_e4gw8")
 theme_override_font_sizes/font_size = 24
-text = "POCholo"
+text = "POKO"
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(172, 35)
 scale = Vector2(2, 2)
-texture = ExtResource("3_0enyi")
+texture = ExtResource("4_e4gw8")
 
 [node name="Healthbar" parent="." instance=ExtResource("4_f1kw4")]
 layout_mode = 0

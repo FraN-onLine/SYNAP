@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://0kvvhlnsbhhk"]
+[gd_scene load_steps=7 format=3 uid="uid://0kvvhlnsbhhk"]
 
 [ext_resource type="Script" uid="uid://bul8mbvaum7g" path="res://UI/player_ui.gd" id="1_6t71k"]
 [ext_resource type="PackedScene" uid="uid://c2hxhom57jt5v" path="res://Markers/Healtbars/healthbar-player.tscn" id="1_hriva"]
 [ext_resource type="PackedScene" uid="uid://dy7rns33ragmt" path="res://Markers/Profiles/Profile.tscn" id="2_0gjvn"]
 [ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="3_rjpm0"]
 [ext_resource type="PackedScene" uid="uid://bmdndhejyvsos" path="res://UI/player_slot.tscn" id="4_yaiyv"]
+[ext_resource type="Texture2D" uid="uid://cpdshvg4lr6ft" path="res://Assets/Characters/Eury/Eury-Skill-Icon.png" id="6_e3npr"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_6t71k")
@@ -27,7 +28,7 @@ offset_bottom = 130.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")
 theme_override_font_sizes/font_size = 24
-text = "POCholo"
+text = "POKO"
 
 [node name="HPLabel" type="Label" parent="."]
 offset_left = 222.0
@@ -54,5 +55,12 @@ layout_mode = 2
 
 [node name="Player Slot3" parent="Characters" instance=ExtResource("4_yaiyv")]
 layout_mode = 2
+
+[node name="Eury-skill-icon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.584314)
+position = Vector2(1033, 527)
+scale = Vector2(4.07812, 3.96875)
+texture = ExtResource("6_e3npr")
 
 [editable path="Sprite2D"]
