@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 @onready var chmanager = $"../CharacterManager"
-
+@onready var spawner = $"../MobSpawner"
+@onready var defeated_label = $"Defeated Label"
 @onready var sprite = $Sprite2D/CenterContainer/Sprite2D
 @onready var name_label = $NameLabel
 @onready var hp_label = $HPLabel
@@ -16,6 +17,8 @@ func _ready():
 	if chmanager.has_signal("active_character_changed"):
 		chmanager.connect("active_character_changed", _on_active_character_changed)
 	set_deployed_characters()
+	if spawner.has_signal("progress_changed"):
+		spawner.connect("progress_changed", _on_progress_changed)
 
 func _process(_delta: float) -> void:
 	for i in range(3):
@@ -61,3 +64,6 @@ func set_deployed_characters() -> void:
 			slot.visible = true
 		else:
 			slot.visible = false
+
+func _on_progress_changed(current: int, total: int) -> void:
+	defeated_label.text = "Enemies Defeated: %d / %d" % [current, total]

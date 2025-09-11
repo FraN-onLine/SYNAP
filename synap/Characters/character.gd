@@ -69,6 +69,9 @@ func _physics_process(delta: float) -> void:
 
 	# Dash input
 	if Input.is_action_just_pressed("ui_accept") and dash_cd_timer <= 0 and not dashing:
+		if attacking:
+			_disable_all_attack_areas()
+			attacking = false
 		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
 
 	# Skill input
@@ -94,7 +97,7 @@ func _physics_process(delta: float) -> void:
 	if dash_cd_timer > 0:
 		dash_cd_timer -= delta
 	# Attack input
-	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0:
+	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0 and not dashing:
 		_handle_attack()
 
 	# Idle/walk anim
@@ -108,32 +111,57 @@ func _physics_process(delta: float) -> void:
 
 
 func _handle_attack() -> void:
-	attack_cd_timer = attack_cooldown
+	if attack_cd_timer > 0: 
+		return  # still cooling down
 
-	if not attacking:
-		attacking = true
-		combo_step = 1
-		_play_attack(combo_step)
-	else:
-		if combo_step < combo_count:
-			queue_next_attack = true
+	# if currently mid-combo, don't just spam queue here
+	# queue_next_attack will be set ONLY if we are in the cancel window
+	if attacking:
+		return  
+
+	# if not attacking → start combo
+	attacking = true
+	combo_step = 1
+	attack_cd_timer = attack_cooldown
+	_play_attack(combo_step)
+
 
 
 func _play_attack(step: int) -> void:
+	
 	var anim_name = "attack-%d" % step
 	sprite.play(anim_name)
-
-	# Enable matching hitbox
 	_enable_attack_area(step)
 
-		# Clean signal connections
+	# Disconnect & reconnect cleanly
 	if sprite.is_connected("animation_finished", Callable(self, "_on_attack_finished")):
 		sprite.disconnect("animation_finished", Callable(self, "_on_attack_finished"))
 	sprite.connect("animation_finished", Callable(self, "_on_attack_finished"))
 
+	# Start cancel window (e.g. last 30% of the anim)
+	var cancel_time = get_anim_length(anim_name) * 0.6
+	_open_queue_window(cancel_time)
+
+func get_anim_length(anim_name: String) -> float:
+	var frames = sprite.sprite_frames.get_frame_count(anim_name)
+	var fps = sprite.sprite_frames.get_animation_speed(anim_name)
+	return frames / float(fps)
+
+
+func _open_queue_window(delay: float) -> void:
+	await get_tree().create_timer(delay).timeout
+	# From here until animation ends, player can buffer next attack
+	if attacking and combo_step < combo_count:
+		queue_next_attack = false  # reset
+		# Check every frame if they press attack
+		while attacking and sprite.is_playing():
+			if Input.is_action_just_pressed("basic_attack"):
+				queue_next_attack = true
+				break
+			
+
 
 func _on_attack_finished() -> void:
-	# Disable hitbox when done
 	_disable_all_attack_areas()
 
 	if queue_next_attack and combo_step < combo_count:
@@ -142,8 +170,22 @@ func _on_attack_finished() -> void:
 		_play_attack(combo_step)
 	else:
 		attacking = false
+
+		# Grace window for follow-up
+		var grace = 1.0
+		var step = combo_step
+		while grace > 0.0 and not attacking:
+			if Input.is_action_just_pressed("basic_attack") and step < combo_count:
+				combo_step = step + 1
+				_play_attack(combo_step)
+				return
+			await get_tree().create_timer(0.05).timeout
+			grace -= 0.05
+
+		# if no follow-up
 		combo_step = 0
 		sprite.play("idle")
+
 
 func _enable_attack_area(step: int) -> void:
 	print("attack")

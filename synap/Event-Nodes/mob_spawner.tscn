@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0lybiuxex4dr"]
+[gd_scene load_steps=5 format=3 uid="uid://b0lybiuxex4dr"]
 
 [ext_resource type="Script" uid="uid://lcxdqvigwx2d" path="res://Event-Nodes/Scripts/mob_spawner.gd" id="1_vt8i2"]
+[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="2_8xfs7"]
+[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="3_mgspe"]
+[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="4_5sbqd"]
 
-[node name="MobSpawner" type="Node2D"]
+[node name="MobSpawner" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_vt8i2")
+spawn_order = Array[PackedScene]([ExtResource("2_8xfs7"), ExtResource("2_8xfs7"), ExtResource("3_mgspe"), ExtResource("3_mgspe"), ExtResource("4_5sbqd"), ExtResource("4_5sbqd"), ExtResource("2_8xfs7"), ExtResource("2_8xfs7"), ExtResource("2_8xfs7")])
+spawn_points = [NodePath("Marker2D")]
 
 [node name="Marker2D" type="Marker2D" parent="."]
