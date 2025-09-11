@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0lybiuxex4dr"]
+
+[ext_resource type="Script" uid="uid://lcxdqvigwx2d" path="res://Event-Nodes/Scripts/mob_spawner.gd" id="1_vt8i2"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_vt8i2")
+
+[node name="Marker2D" type="Marker2D" parent="."]

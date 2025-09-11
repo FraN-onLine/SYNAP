@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="5_witik"]
 [ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="6_witik"]
 [ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="7_n40hx"]
-[ext_resource type="PackedScene" uid="uid://bqgrbyyubro80" path="res://Characters/Eury/Eury.tscn" id="7_sharb"]
+[ext_resource type="PackedScene" uid="uid://2ntr564jryxc" path="res://Characters/Simone/Simone.tscn" id="7_sharb"]
 [ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="8_sharb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n40hx"]

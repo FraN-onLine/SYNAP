@@ -196,7 +196,10 @@ func _stop_dash() -> void:
 		sprite.disconnect("animation_finished", Callable(self, "_stop_dash"))
 
 func skill():
-	# Implement your skill logic here
+	attacking = true
+	sprite.play("skill")
+	await sprite.animation_finished
+	attacking = false
 	print("Skill activated!")
 
 func die() -> void:
