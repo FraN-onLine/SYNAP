@@ -16,6 +16,7 @@ var gravity: float = 900.0
 var attack_cooldown: float = 0.15
 var attack_damage: Array[int]
 var crit_rate = 0.05
+var grace_time: float = 0.0
 
 @export var MaxHP = 200
 var HP = 200
@@ -50,6 +51,13 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
+
+	if attackState == AttackState.RECOVERY:
+		grace_time -= delta
+		if grace_time <= 0.0:
+			attackState = AttackState.IDLE
+			combo_step = 0
+			queue_next_attack = false
 
 	var direction_x := 0.0
 
@@ -103,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		if attackState == AttackState.IDLE:
 			combo_step = 1
 			_play_attack(combo_step)
-		elif attackState == AttackState.RECOVERY and combo_step < combo_count:
+		elif (attackState == AttackState.RECOVERY or attackState == AttackState.ATTACKING) and combo_step < combo_count:
 			queue_next_attack = true
 
 	# Idle/walk anim
@@ -142,25 +150,7 @@ func _on_attack_finished() -> void:
 	else:
 		sprite.play("idle")
 		attackState = AttackState.RECOVERY
-		_start_grace_window(1.0)  # 1 sec grace
-
-func _start_grace_window(duration: float) -> void:
-	var t = duration
-	while t > 0 and attackState == AttackState.RECOVERY:
-		if queue_next_attack and combo_step < combo_count:
-			combo_step += 1
-			_play_attack(combo_step)
-			return
-		await get_tree().create_timer(0.05).timeout
-		t -= 0.05
-
-	# reset fully after grace
-	attackState = AttackState.IDLE
-	combo_step = 0
-	queue_next_attack = false
-	sprite.play("idle")
-
-
+		grace_time = 0.3
 
 func _enable_attack_area(step: int) -> void:
 	print("attack")
