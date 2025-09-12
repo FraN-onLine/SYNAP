@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Character 
 
 enum AttackState { IDLE, ATTACKING, RECOVERY }
-var attack_state = AttackState.IDLE
+var attackState = AttackState.IDLE
 
 @export var character_data: char_data
 @export var obtained = true
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction_x := 0.0
 
-	if not attackState == AttackState.ATTACKING and not dashing:
+	if not (attackState == AttackState.ATTACKING) and not dashing:
 		if Input.is_action_pressed("move_right"):
 			direction_x += 1
 		if Input.is_action_pressed("move_left"):
@@ -71,13 +71,13 @@ func _physics_process(delta: float) -> void:
 
 	# Dash input
 	if Input.is_action_just_pressed("ui_accept") and dash_cd_timer <= 0 and not dashing:
-		if attackstate == AttackState.ATTACKING:
+		if attackState == AttackState.ATTACKING:
 			_disable_all_attack_areas()
 			attackState = AttackState.IDLE
 		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
 
 	# Skill input
-	if Input.is_action_just_pressed("skill_tapped") and not attacking and not dashing:
+	if Input.is_action_just_pressed("skill_tapped") and attackState != AttackState.ATTACKING and not dashing:
 		skill()
 
 	move_and_slide()
@@ -100,14 +100,14 @@ func _physics_process(delta: float) -> void:
 		dash_cd_timer -= delta
 	# Attack input
 	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0 and not dashing:
-        if attack_state == AttackState.IDLE:
-            combo_step = 1
-            _play_attack(combo_step)
-        elif attack_state == AttackState.RECOVERY and combo_step < combo_count:
-            queue_next_attack = true
+		if attackState == AttackState.IDLE:
+			combo_step = 1
+			_play_attack(combo_step)
+		elif attackState == AttackState.RECOVERY and combo_step < combo_count:
+			queue_next_attack = true
 
 	# Idle/walk anim
-	if not attacking and not dashing:
+	if attackState != AttackState.ATTACKING and not dashing:
 		if direction_x != 0:
 			if sprite.animation != "walk":
 				sprite.play("walk")
@@ -118,6 +118,7 @@ func _physics_process(delta: float) -> void:
 
 func _play_attack(step: int) -> void:
 	var anim_name := "attack-%d" % step
+	attackState = AttackState.ATTACKING
 	queue_next_attack = false
 	sprite.play(anim_name)
 	_enable_attack_area(step)
@@ -130,34 +131,34 @@ func _play_attack(step: int) -> void:
 
 
 func _on_attack_finished() -> void:
-    if attack_state != AttackState.ATTACKING:
-        return  # ignore if fired late
+	if attackState != AttackState.ATTACKING:
+		return  # ignore if fired late
 	_disable_all_attack_areas()
 
 
-    if queue_next_attack and combo_step < combo_count:
-        combo_step += 1
-        _play_attack(combo_step)
-    else:
+	if queue_next_attack and combo_step < combo_count:
+		combo_step += 1
+		_play_attack(combo_step)
+	else:
 		sprite.play("idle")
-        attack_state = AttackState.RECOVERY
-        _start_grace_window(1.0)  # 1 sec grace
+		attackState = AttackState.RECOVERY
+		_start_grace_window(1.0)  # 1 sec grace
 
 func _start_grace_window(duration: float) -> void:
-    var t = duration
-    while t > 0 and attack_state == AttackState.RECOVERY:
-        if queue_next_attack and combo_step < combo_count:
-            combo_step += 1
-            _play_attack(combo_step)
-            return
-        await get_tree().create_timer(0.05).timeout
-        t -= 0.05
+	var t = duration
+	while t > 0 and attackState == AttackState.RECOVERY:
+		if queue_next_attack and combo_step < combo_count:
+			combo_step += 1
+			_play_attack(combo_step)
+			return
+		await get_tree().create_timer(0.05).timeout
+		t -= 0.05
 
-    # reset fully after grace
-    attack_state = AttackState.IDLE
-    combo_step = 0
-    queue_next_attack = false
-    sprite.play("idle")
+	# reset fully after grace
+	attackState = AttackState.IDLE
+	combo_step = 0
+	queue_next_attack = false
+	sprite.play("idle")
 
 
 
@@ -206,16 +207,16 @@ func _start_dash(direction: int) -> void:
 func _stop_dash() -> void:
 	dashing = false
 	velocity.x = 0
-	if not attacking:
+	if attackState != AttackState.ATTACKING:
 		sprite.play("idle")
 	if sprite.is_connected("animation_finished", Callable(self, "_stop_dash")):
 		sprite.disconnect("animation_finished", Callable(self, "_stop_dash"))
 
 func skill():
-	attacking = true
+	attackState = AttackState.ATTACKING
 	sprite.play("skill")
 	await sprite.animation_finished
-	attacking = false
+	attackState = AttackState.IDLE
 	print("Skill activated!")
 
 func die() -> void:
