@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 class_name Character 
 
+enum AttackState { IDLE, ATTACKING, RECOVERY }
+var attack_state = AttackState.IDLE
+
 @export var character_data: char_data
 @export var obtained = true
 var is_dead = false
@@ -18,7 +21,6 @@ var crit_rate = 0.05
 var HP = 200
 var combo_step: int = 0
 var combo_count = 2
-var attacking: bool = false
 var queue_next_attack: bool = false
 var attack_cd_timer: float = 0.0
 var dashing = false
@@ -51,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction_x := 0.0
 
-	if not attacking and not dashing:
+	if not attackState == AttackState.ATTACKING and not dashing:
 		if Input.is_action_pressed("move_right"):
 			direction_x += 1
 		if Input.is_action_pressed("move_left"):
@@ -69,9 +71,9 @@ func _physics_process(delta: float) -> void:
 
 	# Dash input
 	if Input.is_action_just_pressed("ui_accept") and dash_cd_timer <= 0 and not dashing:
-		if attacking:
+		if attackstate == AttackState.ATTACKING:
 			_disable_all_attack_areas()
-			attacking = false
+			attackState = AttackState.IDLE
 		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
 
 	# Skill input
@@ -114,7 +116,7 @@ func _handle_attack() -> void:
 	if attack_cd_timer > 0: 
 		return  # still cooling down
 
-	# if currently mid-combo, don't just spam queue here
+	# if currently mdid-combo, don't just spam queue here
 	# queue_next_attack will be set ONLY if we are in the cancel window
 	if attacking:
 		return  
@@ -126,65 +128,93 @@ func _handle_attack() -> void:
 	_play_attack(combo_step)
 
 
+func get_anim_length(anim_name: String) -> float:
+	# Guard: if sprite_frames missing or fps is 0, return small fallback
+	if not sprite.sprite_frames:
+		return 0.3
+	var frames := sprite.sprite_frames.get_frame_count(anim_name)
+	var fps := sprite.sprite_frames.get_animation_speed(anim_name)
+	if fps <= 0:
+		fps = 12.0
+	if frames <= 0:
+		frames = 1
+	return frames / float(fps)
+
 
 func _play_attack(step: int) -> void:
-	
-	var anim_name = "attack-%d" % step
+	var anim_name := "attack-%d" % step
 	sprite.play(anim_name)
 	_enable_attack_area(step)
 
-	# Disconnect & reconnect cleanly
+	# Ensure signal is connected exactly once
 	if sprite.is_connected("animation_finished", Callable(self, "_on_attack_finished")):
 		sprite.disconnect("animation_finished", Callable(self, "_on_attack_finished"))
 	sprite.connect("animation_finished", Callable(self, "_on_attack_finished"))
 
-	# Start cancel window (e.g. last 30% of the anim)
-	var cancel_time = get_anim_length(anim_name) * 0.6
+	# Start the cancel / buffer window asynchronously (non-blocking)
+	var anim_len := get_anim_length(anim_name)
+	if anim_len <= 0:
+		return
+	var cancel_time := anim_len * 0.6  # open window at 60% through animation
 	_open_queue_window(cancel_time)
 
-func get_anim_length(anim_name: String) -> float:
-	var frames = sprite.sprite_frames.get_frame_count(anim_name)
-	var fps = sprite.sprite_frames.get_animation_speed(anim_name)
-	return frames / float(fps)
 
-
+# non-blocking queue window: checks input each frame (yields to engine)
 func _open_queue_window(delay: float) -> void:
+	# wait until the cancel window start
 	await get_tree().create_timer(delay).timeout
-	# From here until animation ends, player can buffer next attack
-	if attacking and combo_step < combo_count:
-		queue_next_attack = false  # reset
-		# Check every frame if they press attack
-		while attacking and sprite.is_playing():
-			if Input.is_action_just_pressed("basic_attack"):
+
+	# if attack was cancelled (dash) before window opens, bail out
+	if not attacking:
+		return
+
+	# allow queuing only while the animation is still playing
+	# we poll input once per frame so we don't block the engine
+	while attacking and sprite.is_playing():
+		if Input.is_action_just_pressed("basic_attack"):
+			# only allow queueing if there's more combo steps left
+			if combo_step < combo_count:
 				queue_next_attack = true
-				break
-			
+			break
+		# yield one frame — this prevents freezing
+		await get_tree().process_frame
+
+	# once loop exits, no longer accepting queue via this window
+	# (queue_next_attack may be true if input was detected)
+	return
 
 
 func _on_attack_finished() -> void:
 	_disable_all_attack_areas()
 
+	# If player buffered the next attack during the cancel window, chain it
 	if queue_next_attack and combo_step < combo_count:
 		queue_next_attack = false
 		combo_step += 1
 		_play_attack(combo_step)
-	else:
-		attacking = false
+		return
 
-		# Grace window for follow-up
-		var grace = 1.0
-		var step = combo_step
-		while grace > 0.0 and not attacking:
-			if Input.is_action_just_pressed("basic_attack") and step < combo_count:
-				combo_step = step + 1
-				_play_attack(combo_step)
-				return
-			await get_tree().create_timer(0.05).timeout
-			grace -= 0.05
+	# Otherwise we start the grace window where player can still continue the combo
+	attacking = false
 
-		# if no follow-up
-		combo_step = 0
+	var grace := 1.0
+	var step_after := combo_step
+	while grace > 0.0 and not attacking:
+		# check input once per small tick (non-blocking)
+		if Input.is_action_just_pressed("basic_attack") and step_after < combo_count:
+			# resume combo
+			combo_step = step_after + 1
+			attacking = true
+			_play_attack(combo_step)
+			return
+		await get_tree().create_timer(0.05).timeout
+		grace -= 0.05
+
+	# no follow-up pressed: fully reset combo
+	combo_step = 0
+	if not dashing:
 		sprite.play("idle")
+
 
 
 func _enable_attack_area(step: int) -> void:
