@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://cl6rcy44pnv7"]
 
-[ext_resource type="Texture2D" uid="uid://cubukau4vx6ek" path="res://Assets/HallTimeMap-1.png" id="1_witik"]
+[ext_resource type="Texture2D" uid="uid://cubukau4vx6ek" path="res://Assets/Areas/HallTimeMap-1.png" id="1_witik"]
 [ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="4_sga0u"]
 [ext_resource type="PackedScene" uid="uid://b0lybiuxex4dr" path="res://Event-Nodes/mob_spawner.tscn" id="7_g8up6"]
 [ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="7_n40hx"]

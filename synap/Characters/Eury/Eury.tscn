@@ -386,7 +386,6 @@ size = Vector2(58.1875, 9.8125)
 collision_layer = 2
 script = ExtResource("1_77xyn")
 character_data = ExtResource("2_sld2e")
-unit_name = "EUry"
 character_profile = ExtResource("3_vve8e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

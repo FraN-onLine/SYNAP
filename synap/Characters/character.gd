@@ -32,6 +32,7 @@ var dash_cd_timer: float = 0.0
 var attack_areas: Array[Area2D]
 
 func _ready():
+	print("ready test")
 	obtained = character_data.obtained
 	is_dead = character_data.is_dead
 	unit_name = character_data.unit_name
@@ -46,7 +47,7 @@ func _ready():
 	HP = character_data.HP
 	combo_count = character_data.combo_count
 	$"../UI".get_node("Healthbar").init_health(MaxHP)
-
+	$"../UI"._initialize_character(character_profile, unit_name, HP, MaxHP)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:

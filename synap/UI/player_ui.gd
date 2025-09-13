@@ -67,3 +67,11 @@ func set_deployed_characters() -> void:
 
 func _on_progress_changed(current: int, total: int) -> void:
 	defeated_label.text = "Enemies Defeated: %d / %d" % [current, total]
+
+func _initialize_character(character_profile, unit_name, HP, MaxHP ) -> void:
+	print("accessed")
+	sprite.texture = character_profile
+	name_label.text = unit_name
+	hp_label.text = "HP: %d/%d" % [HP,MaxHP]
+	healthbar.max_value = MaxHP
+	healthbar.value = HP

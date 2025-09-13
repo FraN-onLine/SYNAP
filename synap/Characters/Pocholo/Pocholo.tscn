@@ -351,7 +351,6 @@ size = Vector2(31.75, 33.25)
 collision_layer = 2
 script = ExtResource("1_jci8d")
 character_data = ExtResource("2_o5u0o")
-unit_name = "Pocholo"
 character_profile = ExtResource("3_ab7iu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck4myvg774jj1"
-path="res://.godot/imported/HallTilemap.png-028b71589139c04017b8bde42308c263.ctex"
+path="res://.godot/imported/HallTilemap.png-c1c44ade4bdbc575690dbf4ef85fab92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HallTilemap.png"
-dest_files=["res://.godot/imported/HallTilemap.png-028b71589139c04017b8bde42308c263.ctex"]
+source_file="res://Assets/Areas/HallTilemap.png"
+dest_files=["res://.godot/imported/HallTilemap.png-c1c44ade4bdbc575690dbf4ef85fab92.ctex"]
 
 [params]
 
