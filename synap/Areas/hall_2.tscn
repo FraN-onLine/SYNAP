@@ -86,7 +86,6 @@ tile_map_data = PackedByteArray("AADy/wAAAQAEAAIAAADy/wEAAQAEAAMAAADz/wAAAQAFAAI
 tile_set = SubResource("TileSet_eb4kn")
 
 [node name="UI" parent="." instance=ExtResource("2_7s7j7")]
-visible = false
 
 [node name="CharacterManager" parent="." instance=ExtResource("3_5bv61")]
 character_scenes = Array[PackedScene]([ExtResource("4_6ow47"), ExtResource("5_0281a"), ExtResource("6_eiqy7")])

@@ -9,6 +9,7 @@ var spawn_index: int = 0
 var alive: int = 0
 var defeated: int = 0
 var finished: bool = false
+@export var door: NodePath
 
 signal all_cleared
 signal progress_changed(current: int, total: int)   # NEW
@@ -51,3 +52,6 @@ func _on_enemy_died() -> void:
 	if alive <= 0 and spawn_index >= spawn_order.size() and not finished:
 		finished = true
 		emit_signal("all_cleared")
+		
+		if has_node(door):
+			get_node(door).unlock()
