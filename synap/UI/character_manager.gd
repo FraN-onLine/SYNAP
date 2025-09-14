@@ -5,21 +5,25 @@ class_name CharacterManager
 @onready var player_UI = $"../UI"
 
 @export var character_scenes: Array[PackedScene] = [] # drag your character scenes
-var active_character: Node = null
 @export_range(0, 2) var starting_index: int = 0 # who starts first
 
-var slots: Array = [] # holds info for each character
+var active_character: Node = null
 var active_index: int = -1
+var slots: Array = []  # [{ scene, instance, data }]
 
 @onready var spawn: Marker2D = $SpawnPoint
 
 signal active_character_changed(character: Node, index: int)
 
+# ---------------------------------------------------
+# LIFECYCLE
+# ---------------------------------------------------
+
 func _ready() -> void:
-	_init_all_slots() 
+	_init_all_slots()
 	_activate(starting_index, spawn.global_position)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if active_character and active_character.is_inside_tree():
 		$Camera2D.global_position = active_character.global_position
 
@@ -49,12 +53,12 @@ func _init_all_slots() -> void:
 		inst.global_position = spawn.global_position
 		inst.remove_from_group("player")
 
+		var data = inst.character_data  # <-- resource reference
+
 		slots.append({
 			"scene": charac,
 			"instance": inst,
-			"hp": inst.HP,
-			"max_hp": inst.MaxHP,
-			"alive": true,
+			"data": data,  # use resource as truth
 		})
 
 	player_UI.set_deployed_characters()
@@ -67,43 +71,37 @@ func switch_to(index: int) -> void:
 	if index == active_index: return
 	if index < 0 or index >= slots.size(): return
 	if slots[index] == null: return
-	if not slots[index]["alive"]: return
+	if slots[index]["data"].is_dead: return
 
 	var previous_position = spawn.global_position
 	if active_character and active_character.is_inside_tree():
 		previous_position = active_character.global_position
 
-	_park_current_and_save()
+	_park_current()
 	_activate(index, previous_position)
 
-func _park_current_and_save() -> void:
+func _park_current() -> void:
 	if active_character == null or active_index < 0 or active_index >= slots.size():
 		return
 
-	# Save HP to slot
-	slots[active_index]["hp"] = active_character.HP
-
-	# Remove from player group
+	# Resource is already updated by character (on damage)
 	active_character.remove_from_group("player")
-
-	# Hide character and disable processing
 	active_character.visible = false
 	_set_node_active(active_character, false)
 
-	# If CharacterBody2D, stop movement
 	if active_character is CharacterBody2D:
 		active_character.velocity = Vector2.ZERO
 
-	# Remove from tree
 	if active_character.get_parent():
 		active_character.get_parent().remove_child(active_character)
 
 func _activate(index: int, world_position: Vector2) -> void:
 	var slot = slots[index]
 	var inst = slot["instance"]
+	var data = slot["data"]
 
-	# If character died and freed, reinstantiate
-	if inst == null and slot["alive"]:
+	# If character freed (died), reinstantiate if still alive in data
+	if inst == null and not data.is_dead:
 		inst = slot["scene"].instantiate()
 		slot["instance"] = inst
 
@@ -111,8 +109,9 @@ func _activate(index: int, world_position: Vector2) -> void:
 	if not inst.is_inside_tree():
 		add_child(inst)
 
-	inst.MaxHP = slot["max_hp"]
-	inst.HP = slot["hp"]
+	# Sync from resource (truth)
+	inst.MaxHP = data.MaxHP
+	inst.HP = data.HP
 	inst.global_position = world_position
 	if inst is CharacterBody2D:
 		inst.velocity = Vector2.ZERO
