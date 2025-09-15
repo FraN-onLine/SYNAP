@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack-1",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -244,7 +244,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack-2",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 0.5,
@@ -279,7 +279,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack-3",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -392,8 +392,10 @@ character_profile = ExtResource("3_vve8e")
 position = Vector2(-1, 0)
 scale = Vector2(0.984375, 0.984375)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"attack-2"
+animation = &"attack-3"
 autoplay = "idle"
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)

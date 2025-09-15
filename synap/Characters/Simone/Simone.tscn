@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jyfjoj4sjn8c" path="res://Characters/Eury/eury.gd" id="1_vg30c"]
 [ext_resource type="Texture2D" uid="uid://dhmuuud8smxm1" path="res://Assets/Characters/Simone/Simone-face.png" id="2_2uokj"]
-[ext_resource type="Resource" uid="uid://c51qkwvuygjjb" path="res://Characters/Eury/01_eury.tres" id="2_dgh7r"]
+[ext_resource type="Resource" uid="uid://djovf8gttkylk" path="res://Characters/Simone/04_Simone.tres" id="2_u34w4"]
 [ext_resource type="Texture2D" uid="uid://clnkluiengmrd" path="res://Assets/Characters/Simone/Simone-Sheet.png" id="2_vg7h8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2uokj"]
@@ -518,7 +518,7 @@ size = Vector2(61, 24.9063)
 [node name="Simone" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_vg30c")
-character_data = ExtResource("2_dgh7r")
+character_data = ExtResource("2_u34w4")
 unit_name = "Simone"
 character_profile = ExtResource("2_2uokj")
 
