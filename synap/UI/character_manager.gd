@@ -43,7 +43,6 @@ func _init_all_slots() -> void:
 	slots.clear()
 	for charac in character_scenes:
 		if charac == null:
-			slots.append(null)
 			continue
 
 		var inst = charac.instantiate()
@@ -55,10 +54,13 @@ func _init_all_slots() -> void:
 
 		var data = inst.character_data  # <-- resource reference
 
+		# Watch for death
+		data.connect("died", Callable(self, "_on_character_died").bind(inst))
+
 		slots.append({
 			"scene": charac,
 			"instance": inst,
-			"data": data,  # use resource as truth
+			"data": data,
 		})
 
 	player_UI.set_deployed_characters()
@@ -70,8 +72,10 @@ func _init_all_slots() -> void:
 func switch_to(index: int) -> void:
 	if index == active_index: return
 	if index < 0 or index >= slots.size(): return
-	if slots[index] == null: return
-	if slots[index]["data"].is_dead: return
+
+	var slot = slots[index]
+	if slot == null: return
+	if slot["data"].is_dead: return
 
 	var previous_position = spawn.global_position
 	if active_character and active_character.is_inside_tree():
@@ -84,7 +88,6 @@ func _park_current() -> void:
 	if active_character == null or active_index < 0 or active_index >= slots.size():
 		return
 
-	# Resource is already updated by character (on damage)
 	active_character.remove_from_group("player")
 	active_character.visible = false
 	_set_node_active(active_character, false)
@@ -96,20 +99,22 @@ func _park_current() -> void:
 		active_character.get_parent().remove_child(active_character)
 
 func _activate(index: int, world_position: Vector2) -> void:
+	if index < 0 or index >= slots.size(): return
 	var slot = slots[index]
+	if slot == null: return
+	if slot["data"].is_dead: return
+
 	var inst = slot["instance"]
 	var data = slot["data"]
 
-	# If character freed (died), reinstantiate if still alive in data
+	# Reinstantiate if freed but still alive
 	if inst == null and not data.is_dead:
 		inst = slot["scene"].instantiate()
 		slot["instance"] = inst
 
-	# Add to tree if not already
 	if not inst.is_inside_tree():
 		add_child(inst)
 
-	# Sync from resource (truth)
 	inst.MaxHP = data.MaxHP
 	inst.HP = data.HP
 	inst.global_position = world_position
@@ -123,6 +128,34 @@ func _activate(index: int, world_position: Vector2) -> void:
 	active_character = inst
 	active_index = index
 	emit_signal("active_character_changed", inst, index)
+
+# ---------------------------------------------------
+# DEATH HANDLING
+# ---------------------------------------------------
+
+func _on_character_died(inst: Node) -> void:
+	# Find and remove slot
+	for i in range(slots.size()):
+		if slots[i] and slots[i]["instance"] == inst:
+			slots.remove_at(i)
+			break
+
+	# Shift active index if needed
+	if active_index >= slots.size():
+		active_index = slots.size() - 1
+
+	# If no characters left → game over
+	if slots.is_empty():
+		print("All characters dead! Game Over.")
+		active_character = null
+		return
+
+	# If current active is dead, auto-switch to first alive
+	if not active_character or active_character == inst:
+		switch_to(0)
+
+	# Update UI
+	player_UI.set_deployed_characters()
 
 # ---------------------------------------------------
 # HELPERS
