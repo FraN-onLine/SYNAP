@@ -1,11 +1,10 @@
 extends Node2D
-
 class_name CharacterManager
 
 @onready var player_UI = $"../UI"
 
-@export var character_scenes: Array[PackedScene] = [] # drag your character scenes
-@export_range(0, 2) var starting_index: int = 0 # who starts first
+@export var character_scenes: Array[PackedScene] = [] 
+@export_range(0, 2) var starting_index: int = 0
 
 var active_character: Node = null
 var active_index: int = -1
@@ -21,7 +20,10 @@ signal active_character_changed(character: Node, index: int)
 
 func _ready() -> void:
 	_init_all_slots()
-	_activate(starting_index, spawn.global_position)
+	# make sure starting index is valid
+	if slots.size() > 0:
+		starting_index = clamp(starting_index, 0, slots.size() - 1)
+		_activate(starting_index, spawn.global_position)
 
 func _physics_process(_delta: float) -> void:
 	if active_character and active_character.is_inside_tree():
@@ -52,10 +54,10 @@ func _init_all_slots() -> void:
 		inst.global_position = spawn.global_position
 		inst.remove_from_group("player")
 
-		var data = inst.character_data  # <-- resource reference
-
-		# Watch for death
-		data.connect("died", Callable(self, "_on_character_died").bind(inst))
+		var data = inst.character_data
+		# connect to death
+		if not data.is_connected("died", Callable(self, "_on_character_died")):
+			data.connect("died", Callable(self, "_on_character_died").bind(inst))
 
 		slots.append({
 			"scene": charac,
@@ -107,7 +109,7 @@ func _activate(index: int, world_position: Vector2) -> void:
 	var inst = slot["instance"]
 	var data = slot["data"]
 
-	# Reinstantiate if freed but still alive
+	# Reinstantiate if freed but not dead
 	if inst == null and not data.is_dead:
 		inst = slot["scene"].instantiate()
 		slot["instance"] = inst
@@ -134,27 +136,33 @@ func _activate(index: int, world_position: Vector2) -> void:
 # ---------------------------------------------------
 
 func _on_character_died(inst: Node) -> void:
-	# Find and remove slot
+	# find and remove slot
+	var new_index := -1
 	for i in range(slots.size()):
 		if slots[i] and slots[i]["instance"] == inst:
 			slots.remove_at(i)
+			new_index = i
 			break
 
-	# Shift active index if needed
-	if active_index >= slots.size():
-		active_index = slots.size() - 1
-
-	# If no characters left → game over
+	# if all dead
 	if slots.is_empty():
 		print("All characters dead! Game Over.")
 		active_character = null
+		active_index = -1
+		player_UI.set_deployed_characters()
 		return
 
-	# If current active is dead, auto-switch to first alive
+	# decide new active char
+	# if the one who died was active, pick fallback
 	if not active_character or active_character == inst:
-		switch_to(0)
+		var fallback = clamp(new_index - 1, 0, slots.size() - 1)
+		switch_to(fallback)
+	else:
+		# if someone else died, just fix indices
+		if active_index >= slots.size():
+			active_index = slots.size() - 1
 
-	# Update UI
+	# update UI
 	player_UI.set_deployed_characters()
 
 # ---------------------------------------------------
