@@ -1,8 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://bw1bxay158sp0"]
+[gd_scene load_steps=62 format=3 uid="uid://bw1bxay158sp0"]
 
-[ext_resource type="Script" uid="uid://cyjuot5i07wog" path="res://Characters/Pocholo/pocholo.gd" id="1_pqhja"]
+[ext_resource type="Script" uid="uid://fg381oxojwr" path="res://Characters/Hedler/hedler.gd" id="1_f2hth"]
 [ext_resource type="Resource" uid="uid://47beugy3v8f5" path="res://Characters/Hedler/07_hedler.tres" id="2_pc4xm"]
-[ext_resource type="Texture2D" uid="uid://dik1fn6cv5qa0" path="res://Assets/Characters/Pocholo/Pocholo-face.png" id="3_ykqgp"]
 [ext_resource type="Texture2D" uid="uid://bhosi64fha1tq" path="res://Assets/Characters/Hedler/Hedler-Sheet.png" id="4_pc4xm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kh0f"]
@@ -432,10 +431,8 @@ size = Vector2(14.9375, 54.625)
 
 [node name="Hedler" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-script = ExtResource("1_pqhja")
+script = ExtResource("1_f2hth")
 character_data = ExtResource("2_pc4xm")
-unit_name = "Pochoload"
-character_profile = ExtResource("3_ykqgp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)

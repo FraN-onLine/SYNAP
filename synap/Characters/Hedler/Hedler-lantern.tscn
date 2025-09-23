@@ -1,3 +1,107 @@
-[gd_scene format=3 uid="uid://bfh5741y2r3tg"]
+[gd_scene load_steps=15 format=3 uid="uid://bfh5741y2r3tg"]
+
+[ext_resource type="Script" uid="uid://dp2djeoey6yuj" path="res://Characters/Hedler/hedler_lantern.gd" id="1_35j1f"]
+[ext_resource type="Texture2D" uid="uid://ddhgkcgbaa7uy" path="res://Assets/Characters/Hedler/Hedler-lamp-Sheet.png" id="2_j1idn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aha6h"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt3j1"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gy5n"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoue6"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tna8c"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12llm"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoykr"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6maqr"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccin4"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeqan"]
+atlas = ExtResource("2_j1idn")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qwsw"]
+animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_aha6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vt3j1")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_0gy5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoue6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tna8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12llm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoykr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6maqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccin4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeqan")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ediv3"]
+radius = 34.0
 
 [node name="Hedler-lantern" type="Node2D"]
+light_mask = 3
+visibility_layer = 3
+script = ExtResource("1_35j1f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5qwsw")
+animation = &"idle"
+frame_progress = 0.330236
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ediv3")
