@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="char_data" load_steps=3 format=3 uid="uid://47beugy3v8f5"]
+
+[ext_resource type="Script" uid="uid://d1a6l6gvd7616" path="res://Characters/character_resource.gd" id="1_b5cx0"]
+[ext_resource type="Texture2D" uid="uid://dh3m53jn1vkwa" path="res://Assets/Characters/Hedler/Hedler-Face.png" id="1_lompy"]
+
+[resource]
+script = ExtResource("1_b5cx0")
+obtained = true
+is_dead = false
+unit_name = "Hedler"
+character_profile = ExtResource("1_lompy")
+slot_index = 0
+speed = 150.0
+gravity = 900.0
+attack_cooldown = 0.15
+attack_damage = Array[int]([50, 5])
+crit_rate = 0.05
+MaxHP = 200
+HP = 200
+combo_count = 2
+metadata/_custom_type_script = "uid://d1a6l6gvd7616"
