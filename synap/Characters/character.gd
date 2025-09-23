@@ -183,10 +183,10 @@ func take_damage(amount):
 	modulate = Color(1, 0, 0, 0.75)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
-	if HP <= 0:
+	if HP <= 0 and not character_data.is_dead:
 		is_dead = true
-		character_data.is_dead = true # <-- update resource
-		die()
+		character_data.is_dead = true
+		die()  # existing dying logic on the instance
 
 func _start_dash(direction: int) -> void:
 	dashing = true
@@ -217,4 +217,6 @@ func die() -> void:
 	character_data.is_dead = true # <-- update resource
 	sprite.play("death")
 	await sprite.animation_finished
+	if character_data.has_signal("died"):
+			character_data.emit_signal("died")  # manager will receive this
 	queue_free()  # or handle respawn here

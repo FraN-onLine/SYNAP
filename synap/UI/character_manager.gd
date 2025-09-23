@@ -136,15 +136,13 @@ func _activate(index: int, world_position: Vector2) -> void:
 # ---------------------------------------------------
 
 func _on_character_died(inst: Node) -> void:
-	# find and remove slot
-	var new_index := -1
+	# find and remove the active slot
 	for i in range(slots.size()):
 		if slots[i] and slots[i]["instance"] == inst:
 			slots.remove_at(i)
-			new_index = i
 			break
 
-	# if all dead
+	# if all are dead
 	if slots.is_empty():
 		print("All characters dead! Game Over.")
 		active_character = null
@@ -152,18 +150,14 @@ func _on_character_died(inst: Node) -> void:
 		player_UI.set_deployed_characters()
 		return
 
-	# decide new active char
-	# if the one who died was active, pick fallback
-	if not active_character or active_character == inst:
-		var fallback = clamp(new_index - 1, 0, slots.size() - 1)
-		switch_to(fallback)
-	else:
-		# if someone else died, just fix indices
-		if active_index >= slots.size():
-			active_index = slots.size() - 1
+	# after removal, array is already shifted
+	# so we always switch to the new first slot
+	active_index = -1
+	switch_to(0)
 
 	# update UI
 	player_UI.set_deployed_characters()
+
 
 # ---------------------------------------------------
 # HELPERS

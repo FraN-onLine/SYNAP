@@ -2,6 +2,8 @@ extends Resource
 
 class_name char_data
 
+signal died
+
 @export var obtained = true
 @export var is_dead = false
 @export var unit_name = "Name"
