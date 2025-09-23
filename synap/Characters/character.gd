@@ -17,6 +17,8 @@ var attack_cooldown: float = 0.1
 var attack_damage: Array[int]
 var crit_rate = 0.05
 var grace_time: float = 0.0
+var skill_cooldown: float = 5.0
+var skill_cd_timer: float = 0.0
 
 @export var MaxHP = 200
 var HP = 200
@@ -46,6 +48,7 @@ func _ready():
 	MaxHP = character_data.MaxHP
 	HP = character_data.HP
 	combo_count = character_data.combo_count
+	skill_cooldown = character_data.skill_cooldown
 	$"../UI".get_node("Healthbar").init_health(MaxHP)
 	$"../UI"._initialize_character(character_profile, unit_name, HP, MaxHP)
 
@@ -86,7 +89,8 @@ func _physics_process(delta: float) -> void:
 		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
 
 	# Skill input
-	if Input.is_action_just_pressed("skill_tapped") and attackState != AttackState.ATTACKING and not dashing:
+	if Input.is_action_just_pressed("skill_tapped") and attackState != AttackState.ATTACKING and not dashing and skill_cd_timer <= 0:
+		skill_cd_timer = skill_cooldown
 		skill()
 
 	move_and_slide()
@@ -107,6 +111,8 @@ func _physics_process(delta: float) -> void:
 		attack_cd_timer -= delta
 	if dash_cd_timer > 0:
 		dash_cd_timer -= delta
+	if skill_cd_timer > 0:
+		skill_cd_timer -= delta
 	# Attack input
 	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0 and not dashing:
 		if attackState == AttackState.IDLE:
@@ -183,10 +189,10 @@ func take_damage(amount):
 	modulate = Color(1, 0, 0, 0.75)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
-	if HP <= 0 and not character_data.is_dead:
+	if HP <= 0:
 		is_dead = true
-		character_data.is_dead = true
-		die()  # existing dying logic on the instance
+		character_data.is_dead = true # <-- update resource
+		die()
 
 func _start_dash(direction: int) -> void:
 	dashing = true
@@ -217,6 +223,4 @@ func die() -> void:
 	character_data.is_dead = true # <-- update resource
 	sprite.play("death")
 	await sprite.animation_finished
-	if character_data.has_signal("died"):
-			character_data.emit_signal("died")  # manager will receive this
 	queue_free()  # or handle respawn here

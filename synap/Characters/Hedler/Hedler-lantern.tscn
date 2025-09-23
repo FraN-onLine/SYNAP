@@ -97,7 +97,7 @@ script = ExtResource("1_35j1f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5qwsw")
 animation = &"idle"
-frame_progress = 0.330236
+frame_progress = 0.201711
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 3

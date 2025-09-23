@@ -12,6 +12,7 @@ signal died
 @export var speed: float = 150.0
 @export var gravity: float = 900.0
 @export var attack_cooldown: float = 0.15
+@export var skill_cooldown: float = 5.0
 @export var attack_damage: Array[int]
 @export var crit_rate = 0.05
 @export var MaxHP = 200

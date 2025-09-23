@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var duration: float = 5.0
+@export var duration: float = 7.5
 @export var tick_interval: float = 0.5
 @export var damage: int = 5
 
