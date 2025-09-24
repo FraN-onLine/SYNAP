@@ -16,6 +16,7 @@ func _ready():
 	combo_count = 3
 
 func skill():
+	emit_signal("skill_used", character_data.skill_cooldown)
 	attackState = AttackState.ATTACKING
 	sprite.play("skill")
 

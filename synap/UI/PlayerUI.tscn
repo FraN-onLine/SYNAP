@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0kvvhlnsbhhk"]
+[gd_scene load_steps=10 format=3 uid="uid://0kvvhlnsbhhk"]
 
 [ext_resource type="Script" path="res://UI/player_ui.gd" id="1_6t71k"]
 [ext_resource type="PackedScene" uid="uid://c2hxhom57jt5v" path="res://Markers/Healtbars/healthbar-player.tscn" id="1_hriva"]
@@ -8,14 +8,26 @@
 [ext_resource type="PackedScene" uid="uid://bmdndhejyvsos" path="res://UI/player_slot.tscn" id="4_yaiyv"]
 [ext_resource type="Texture2D" uid="uid://cpdshvg4lr6ft" path="res://Assets/Characters/Eury/Eury-Skill-Icon.png" id="6_e3npr"]
 [ext_resource type="FontFile" uid="uid://c087o32n144xo" path="res://Assets/Silkscreen/Silkscreen-Bold.ttf" id="7_kr05p"]
+[ext_resource type="PackedScene" uid="uid://dnibrhxqdxgds" path="res://UI/SkillIcon.tscn" id="9_m3xy1"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_6t71k")
 
 [node name="Level-Indicator" type="Sprite2D" parent="."]
-position = Vector2(606.5, 33)
+position = Vector2(647.5, 31)
 scale = Vector2(3.55208, 1.875)
 texture = ExtResource("2_abv54")
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 489.5
+offset_top = 10.0
+offset_right = 807.5
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rjpm0")
+theme_override_font_sizes/font_size = 32
+text = "Room 1"
+horizontal_alignment = 1
 
 [node name="Healthbar" parent="." instance=ExtResource("1_hriva")]
 offset_left = 98.0
@@ -39,17 +51,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")
 theme_override_font_sizes/font_size = 24
 text = "POKO"
-
-[node name="LevelLabel" type="Label" parent="."]
-offset_left = 446.5
-offset_top = 12.0
-offset_right = 764.5
-offset_bottom = 53.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_rjpm0")
-theme_override_font_sizes/font_size = 32
-text = "Room 1"
-horizontal_alignment = 1
 
 [node name="HPLabel" type="Label" parent="."]
 offset_left = 223.0
@@ -91,5 +92,11 @@ offset_bottom = 139.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_kr05p")
 text = "FIGHT SO DIRTY BUT LOVE SO SWEET"
+
+[node name="SkillIcon" parent="." instance=ExtResource("9_m3xy1")]
+offset_left = 19.0
+offset_top = 479.0
+offset_right = 19.824
+offset_bottom = 480.808
 
 [editable path="Sprite2D"]

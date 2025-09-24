@@ -17,7 +17,6 @@ extends CanvasLayer
 ]
 
 func _ready() -> void:
-	
 	level_label.text = "Room 1"
 	if chmanager.has_signal("active_character_changed"):
 		chmanager.connect("active_character_changed", _on_active_character_changed)
@@ -27,6 +26,8 @@ func _ready() -> void:
 		spawner.connect("progress_changed", _on_progress_changed)
 
 func _process(_delta: float) -> void:
+	
+	
 	# Update each slot’s health directly from the resource
 	for i in range(slots.size()):
 		var slot = slots[i]
@@ -47,6 +48,8 @@ func _on_active_character_changed(character: Node, index: int) -> void:
 		_update_main_display(data)
 	else:
 		_clear_main_display()
+		
+	character.connect("skill_used", skill_cd)
 
 	# Highlight active slot
 	for i in range(slots.size()):
@@ -97,3 +100,7 @@ func _initialize_character(character_profile, unit_name, HP, MaxHP ) -> void:
 		hp_label.text = "HP: %d/%d" % [HP,MaxHP] 
 		healthbar.max_value = MaxHP 
 		healthbar.value = HP
+
+func skill_cd(skill_cooldown):
+	print("skilly")
+	$SkillIcon.start_cooldown(skill_cooldown)

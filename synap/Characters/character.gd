@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 class_name Character 
 
+signal skill_used(cooldown)
+
+
 enum AttackState { IDLE, ATTACKING, RECOVERY }
 var attackState = AttackState.IDLE
 
@@ -212,6 +215,7 @@ func _stop_dash() -> void:
 		sprite.disconnect("animation_finished", Callable(self, "_stop_dash"))
 
 func skill():
+	emit_signal("skill_used", character_data.skill_cooldown)
 	attackState = AttackState.ATTACKING
 	sprite.play("skill")
 	await sprite.animation_finished
