@@ -223,4 +223,5 @@ func die() -> void:
 	character_data.is_dead = true # <-- update resource
 	sprite.play("death")
 	await sprite.animation_finished
+	character_data.emit_signal("died")
 	queue_free()  # or handle respawn here

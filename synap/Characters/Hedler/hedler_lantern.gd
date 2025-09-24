@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var duration: float = 7.5
-@export var tick_interval: float = 0.5
+@export var tick_interval: float = 0.4
 @export var damage: int = 5
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

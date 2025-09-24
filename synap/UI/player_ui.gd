@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var chmanager = $"../CharacterManager"
 @onready var spawner = $"../MobSpawner"
 @onready var defeated_label = $"Defeated Label"
+@onready var level_label = $LevelLabel
 
 @onready var sprite = $Sprite2D/CenterContainer/Sprite2D
 @onready var name_label = $NameLabel
@@ -16,6 +17,8 @@ extends CanvasLayer
 ]
 
 func _ready() -> void:
+	
+	level_label.text = "Room 1"
 	if chmanager.has_signal("active_character_changed"):
 		chmanager.connect("active_character_changed", _on_active_character_changed)
 	set_deployed_characters()

@@ -414,7 +414,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byyj0")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_w5fp6")
 }],
 "loop": false,
@@ -526,10 +526,8 @@ character_profile = ExtResource("2_2uokj")
 position = Vector2(1, 0)
 scale = Vector2(0.984375, 0.984375)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"attack-1"
+animation = &"death"
 autoplay = "idle"
-frame = 9
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)
