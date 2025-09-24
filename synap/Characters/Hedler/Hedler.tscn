@@ -274,6 +274,56 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6kh0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ppgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md4ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q58wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g77m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esrer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk3xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrdv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7lr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd6qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m52g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_125nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnius")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2gkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvmon")
+}],
+"loop": false,
+"name": &"attack-2",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fdj65")
 }, {
 "duration": 1.0,
@@ -307,7 +357,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jw74p")
 }],
 "loop": false,
-"name": &"attack-2",
+"name": &"attack-3",
 "speed": 15.0
 }, {
 "frames": [{
@@ -437,10 +487,8 @@ character_data = ExtResource("2_pc4xm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"attack-1"
+animation = &"attack-2"
 autoplay = "idle"
-frame = 14
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)
@@ -463,6 +511,15 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2"]
+position = Vector2(38.9375, 2)
+shape = SubResource("RectangleShape2D_sld2e")
+disabled = true
+
+[node name="AttackArea3" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea3"]
 position = Vector2(-8.46875, -35)
 shape = SubResource("RectangleShape2D_arjcj")
 disabled = true
