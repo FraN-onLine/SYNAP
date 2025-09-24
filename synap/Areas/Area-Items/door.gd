@@ -16,6 +16,8 @@ func _ready() -> void:
 func unlock() -> void:
 	is_unlocked = true
 	visible = true
+	$Door.play("spawn")
+	
 
 func _on_body_entered(body: Node) -> void:
 	if is_unlocked and body.is_in_group("player"):
