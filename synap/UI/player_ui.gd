@@ -49,7 +49,12 @@ func _on_active_character_changed(character: Node, index: int) -> void:
 	else:
 		_clear_main_display()
 		
-	character.connect("skill_used", skill_cd)
+	if character and character.has_signal("skill_used"):
+		if character.is_connected("skill_used", Callable(self, "skill_cd")):
+			character.disconnect("skill_used", Callable(self, "skill_cd"))
+			character.connect("skill_used", skill_cd)
+		else:
+			character.connect("skill_used", skill_cd)
 
 	# Highlight active slot
 	for i in range(slots.size()):

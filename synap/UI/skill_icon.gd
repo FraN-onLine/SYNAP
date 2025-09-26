@@ -16,9 +16,13 @@ func start_cooldown(time: float) -> void:
 	$Label.text = str(cooldown, "%.1f") + "s"
 
 func _process(delta: float) -> void:
-	$Label.text = String.num(cooldown, 1) + "s"
 	if cooldown > 0:
+		$Label.text = String.num(cooldown, 1) + "s"
 		cooldown -= delta
 		cd_bar.value = cooldown
 		if cooldown <= 0:
 			cd_bar.visible = false
+			$Label.text = "Ready!"
+			#wait 1s then clear text
+			await get_tree().create_timer(0.6).timeout
+			$Label.text = ""
