@@ -114,6 +114,8 @@ func _activate(index: int, world_position: Vector2) -> void:
 		inst = slot["scene"].instantiate()
 		slot["instance"] = inst
 
+	inst.initialize_data()
+
 	if not inst.is_inside_tree():
 		add_child(inst)
 

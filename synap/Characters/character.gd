@@ -37,6 +37,9 @@ var dash_cd_timer: float = 0.0
 var attack_areas: Array[Area2D]
 
 func _ready():
+	initialize_data()
+
+func initialize_data():
 	print("ready test")
 	obtained = character_data.obtained
 	is_dead = character_data.is_dead
