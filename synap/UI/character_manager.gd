@@ -130,6 +130,7 @@ func _activate(index: int, world_position: Vector2) -> void:
 	inst.add_to_group("player")
 
 	active_character = inst
+	Partystate.set_active_character(active_character)
 	active_index = index
 	emit_signal("active_character_changed", inst, index)
 

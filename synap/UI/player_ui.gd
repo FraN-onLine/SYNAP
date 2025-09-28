@@ -43,6 +43,8 @@ func _process(_delta: float) -> void:
 # ACTIVE CHARACTER CHANGED
 # ---------------------------------------------------
 func _on_active_character_changed(character: Node, index: int) -> void:
+	Partystate.active_character = character
+	Partystate.active_index = index
 	if character:
 		var data = character.character_data
 		_update_main_display(data)

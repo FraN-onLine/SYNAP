@@ -18,5 +18,5 @@ attack_damage = Array[int]([7, 8, 15])
 crit_rate = 0.05
 MaxHP = 200
 HP = 200
-combo_count = 2
+combo_count = 3
 metadata/_custom_type_script = "uid://d1a6l6gvd7616"
