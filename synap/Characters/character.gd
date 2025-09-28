@@ -187,6 +187,9 @@ func _on_attack_area_entered(body: Node, idx: int) -> void:
 		body.take_damage(attack_damage[idx])
 
 func take_damage(amount):
+	
+	if Partystate.is_in_immunity_state:
+		return
 	# First check global mitigation
 	if Partystate.try_mitigate_damage():
 		return  # damage nullified

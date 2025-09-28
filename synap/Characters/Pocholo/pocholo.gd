@@ -19,9 +19,10 @@ func skill():
 	sprite.play("skill")
 
 	await sprite.animation_finished
-	Partystate.damage_immune_triggers = 5
+	Partystate.damage_immune_triggers = 3
 	#instance to current character
 	var shield_instance = pocholo_shield.instantiate()
 	add_child(shield_instance)
+	Partystate.current_shield = shield_instance
 
 	attackState = AttackState.IDLE

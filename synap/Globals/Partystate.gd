@@ -1,8 +1,10 @@
 extends Node
 
+var is_in_immunity_state = false
 var damage_immune_triggers: int = 0
 var active_character
 var active_index
+var current_shield 
 
 signal damage_mitigated
 
@@ -15,3 +17,11 @@ func try_mitigate_damage():
 
 func set_active_character(char: Character) -> void:
 	active_character = char
+	if current_shield:
+		reparent_shield(char)
+	
+	
+func reparent_shield(new_parent: Node2D) -> void:
+	current_shield.get_parent().remove_child(current_shield)
+	new_parent.add_child(current_shield)
+	current_shield.position = Vector2.ZERO
