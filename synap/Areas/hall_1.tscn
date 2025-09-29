@@ -108,5 +108,6 @@ position = Vector2(-35, -103)
 
 [editable path="UI"]
 [editable path="UI/Sprite2D"]
+[editable path="UI/SkillIcon"]
 [editable path="CharacterManager"]
 [editable path="MobSpawner"]
