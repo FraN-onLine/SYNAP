@@ -72,6 +72,7 @@ func _init_all_slots() -> void:
 # ---------------------------------------------------
 
 func switch_to(index: int) -> void:
+	if Partystate.can_switch == false: return
 	if index == active_index: return
 	if index < 0 or index >= slots.size(): return
 

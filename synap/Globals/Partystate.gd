@@ -1,12 +1,20 @@
 extends Node
 
+var can_switch = true
 var is_in_immunity_state = false
 var damage_immune_triggers: int = 0
 var active_character
 var active_index
 var current_shield 
+var party_cooldowns = [0,0,0]
 
 signal damage_mitigated
+
+func _process(delta: float) -> void:
+	for i in range(party_cooldowns.size()):
+		if party_cooldowns[i] > 0:
+			party_cooldowns[i] = max(party_cooldowns[i] - delta, 0)
+	
 
 func try_mitigate_damage():
 	if damage_immune_triggers > 0:

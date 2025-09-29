@@ -14,6 +14,7 @@ func _ready():
 	combo_count = 2
 
 func skill():
+	Partystate.can_switch = false
 	emit_signal("skill_used", character_data.skill_cooldown)
 	attackState = AttackState.ATTACKING
 	sprite.play("skill")
@@ -26,3 +27,4 @@ func skill():
 	Partystate.current_shield = shield_instance
 
 	attackState = AttackState.IDLE
+	Partystate.can_switch = true

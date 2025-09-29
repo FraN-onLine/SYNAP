@@ -6,6 +6,15 @@ extends Control
 var cooldown := 0.0
 var max_cooldown := 0.0
 
+func set_value(skill_cd, value):
+	cd_bar.max_value = skill_cd
+	cd_bar.value = value
+	cooldown = value
+	max_cooldown = skill_cd
+	if value <= 0:
+		$Label.text = ""
+
+
 func start_cooldown(time: float) -> void:
 	print("timey")
 	max_cooldown = time

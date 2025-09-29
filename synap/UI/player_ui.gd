@@ -94,6 +94,8 @@ func _update_main_display(data) -> void:
 	hp_label.text = "HP: %d/%d" % [data.HP, data.MaxHP]
 	healthbar.max_value = data.MaxHP
 	healthbar.value = data.HP
+	$SkillIcon/Sprite2D.texture = data.skill_texture
+	$SkillIcon.set_value(data.skill_cooldown, Partystate.party_cooldowns[Partystate.active_index])
 
 func _clear_main_display() -> void:
 	sprite.texture = null
@@ -101,13 +103,14 @@ func _clear_main_display() -> void:
 	hp_label.text = ""
 	healthbar.value = 0
 
-func _initialize_character(character_profile, unit_name, HP, MaxHP ) -> void:
+func _initialize_character(character_profile, unit_name, HP, MaxHP, skill_texture ) -> void:
 		sprite.texture = character_profile
 		name_label.text = unit_name 
 		hp_label.text = "HP: %d/%d" % [HP,MaxHP] 
 		healthbar.max_value = MaxHP 
 		healthbar.value = HP
+		$SkillIcon/Sprite2D.texture = skill_texture
 
 func skill_cd(skill_cooldown):
-	print("skilly")
+	Partystate.party_cooldowns[Partystate.active_index] = skill_cooldown
 	$SkillIcon.start_cooldown(skill_cooldown)

@@ -22,6 +22,7 @@ var crit_rate = 0.05
 var grace_time: float = 0.0
 var skill_cooldown: float = 5.0
 var skill_cd_timer: float = 0.0
+var skill_texture
 
 @export var MaxHP = 200
 var HP = 200
@@ -38,8 +39,8 @@ var attack_areas: Array[Area2D]
 
 func _ready():
 	$"../../UI".get_node("Healthbar").init_health(MaxHP)
-	$"../../UI"._initialize_character(character_profile, unit_name, HP, MaxHP)
 	initialize_data()
+	$"../../UI"._initialize_character(character_profile, unit_name, HP, MaxHP, skill_texture)
 
 func initialize_data():
 	print("ready test")
@@ -57,6 +58,7 @@ func initialize_data():
 	HP = character_data.HP
 	combo_count = character_data.combo_count
 	skill_cooldown = character_data.skill_cooldown
+	skill_texture = character_data.skill_texture
 	
 
 func _physics_process(delta: float) -> void:
@@ -96,8 +98,7 @@ func _physics_process(delta: float) -> void:
 		_start_dash(direction_x if direction_x != 0 else (-1 if sprite.flip_h else 1))
 
 	# Skill input
-	if Input.is_action_just_pressed("skill_tapped") and attackState != AttackState.ATTACKING and not dashing and skill_cd_timer <= 0:
-		skill_cd_timer = skill_cooldown
+	if Input.is_action_just_pressed("skill_tapped") and attackState != AttackState.ATTACKING and not dashing and Partystate.party_cooldowns[Partystate.active_index] <= 0:
 		skill()
 
 	move_and_slide()
@@ -118,8 +119,7 @@ func _physics_process(delta: float) -> void:
 		attack_cd_timer -= delta
 	if dash_cd_timer > 0:
 		dash_cd_timer -= delta
-	if skill_cd_timer > 0:
-		skill_cd_timer -= delta
+		
 	# Attack input
 	if Input.is_action_just_pressed("basic_attack") and attack_cd_timer <= 0 and not dashing:
 		if attackState == AttackState.IDLE:
