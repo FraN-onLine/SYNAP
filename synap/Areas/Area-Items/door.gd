@@ -36,5 +36,6 @@ func _process(_delta: float) -> void:
 		_change_scene()
 
 func _change_scene() -> void:
+	Stagestate.current_room += 1
 	if next_scene_path != "":
 		get_tree().change_scene_to_file(next_scene_path)

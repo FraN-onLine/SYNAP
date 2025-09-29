@@ -14,14 +14,14 @@
 script = ExtResource("1_6t71k")
 
 [node name="Level-Indicator" type="Sprite2D" parent="."]
-position = Vector2(647.5, 31)
+position = Vector2(814.5, 31)
 scale = Vector2(3.55208, 1.875)
 texture = ExtResource("2_abv54")
 
 [node name="LevelLabel" type="Label" parent="."]
-offset_left = 489.5
+offset_left = 656.5
 offset_top = 10.0
-offset_right = 807.5
+offset_right = 974.5
 offset_bottom = 51.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rjpm0")

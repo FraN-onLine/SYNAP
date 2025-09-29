@@ -17,7 +17,7 @@ extends CanvasLayer
 ]
 
 func _ready() -> void:
-	level_label.text = "Room 1"
+	level_label.text = "Room " + str(Stagestate.current_room)
 	if chmanager.has_signal("active_character_changed"):
 		chmanager.connect("active_character_changed", _on_active_character_changed)
 	set_deployed_characters()

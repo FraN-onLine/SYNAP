@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Partystate="*res://Globals/Partystate.gd"
+Stagestate="*res://Globals/Stagestate.gd"
 
 [display]
 
