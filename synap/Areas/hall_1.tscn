@@ -104,7 +104,10 @@ position = Vector2(4, -2)
 door = NodePath("../Door")
 
 [node name="Marker2D" parent="MobSpawner" index="0"]
-position = Vector2(-35, -103)
+position = Vector2(7, -90)
+
+[node name="Marker2D2" type="Marker2D" parent="MobSpawner"]
+position = Vector2(-158, -91)
 
 [editable path="UI"]
 [editable path="UI/Sprite2D"]
