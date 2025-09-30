@@ -278,7 +278,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 6.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -360,9 +360,9 @@ character_profile = ExtResource("3_ab7iu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"attack-1"
+animation = &"death"
 autoplay = "idle"
-frame = 8
+frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
