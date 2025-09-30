@@ -124,7 +124,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_eiqy7")
 
-[node name="Hall1" type="Node2D"]
+[node name="Hall2" type="Node2D"]
 
 [node name="TileMap-BG" type="TileMapLayer" parent="."]
 scale = Vector2(0.8, 0.8)
