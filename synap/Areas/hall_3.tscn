@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bjuf7epqpf30b"]
+[gd_scene load_steps=14 format=4 uid="uid://x0px13fcdsdr"]
 
 [ext_resource type="Texture2D" uid="uid://cubukau4vx6ek" path="res://Assets/Areas/HallTimeMap-1.png" id="1_vx3eu"]
 [ext_resource type="PackedScene" uid="uid://cfkbwf5sxpuiu" path="res://Areas/Area-Items/Door.tscn" id="2_m5csi"]
