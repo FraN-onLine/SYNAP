@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0lybiuxex4dr"]
 
 [ext_resource type="Script" uid="uid://lcxdqvigwx2d" path="res://Event-Nodes/Scripts/mob_spawner.gd" id="1_vt8i2"]
-[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="2_8xfs7"]
-[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="3_mgspe"]
-[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="4_5sbqd"]
+[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/Basic/slime.tscn" id="2_8xfs7"]
+[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/Basic/bat.tscn" id="3_mgspe"]
+[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/Basic/spinner.tscn" id="4_5sbqd"]
 
 [node name="MobSpawner" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_vt8i2")

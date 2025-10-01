@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ouquln5tyaqk"]
 
-[ext_resource type="Script" uid="uid://4ai1f5fow33e" path="res://Enemies/spinner_bullet.gd" id="1_5g241"]
+[ext_resource type="Script" uid="uid://4ai1f5fow33e" path="res://Enemies/Basic/spinner_bullet.gd" id="1_5g241"]
 [ext_resource type="Texture2D" uid="uid://bnvow0dbnxpis" path="res://Assets/Enemies/SpinnerBullet-Sheet.png" id="1_g3uv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5g241"]

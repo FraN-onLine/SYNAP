@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://bj5onwih4tp4g"]
 
-[ext_resource type="Script" uid="uid://bqvbfr2t1sy2d" path="res://Enemies/spinner.gd" id="1_fk3qk"]
+[ext_resource type="Script" uid="uid://bqvbfr2t1sy2d" path="res://Enemies/Basic/spinner.gd" id="1_fk3qk"]
 [ext_resource type="Texture2D" uid="uid://deawblwgh6ior" path="res://Assets/Enemies/Spinner-Sheet.png" id="1_qw2o6"]
 [ext_resource type="PackedScene" uid="uid://ds67jg2ay35um" path="res://Markers/Damage/damage_popup.tscn" id="2_e8p01"]
-[ext_resource type="PackedScene" uid="uid://ouquln5tyaqk" path="res://Enemies/spinner_bullet.tscn" id="2_vomno"]
+[ext_resource type="PackedScene" uid="uid://ouquln5tyaqk" path="res://Enemies/Basic/spinner_bullet.tscn" id="2_vomno"]
 [ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="4_xiogw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqepa"]

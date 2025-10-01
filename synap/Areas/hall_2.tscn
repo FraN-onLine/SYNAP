@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="5_0281a"]
 [ext_resource type="PackedScene" uid="uid://bw1bxay158sp0" path="res://Characters/Hedler/Hedler.tscn" id="6_hwokv"]
 [ext_resource type="PackedScene" uid="uid://b0lybiuxex4dr" path="res://Event-Nodes/mob_spawner.tscn" id="7_fnuvu"]
-[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="8_6ow47"]
-[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="9_0281a"]
-[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="10_eiqy7"]
+[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/Basic/slime.tscn" id="8_6ow47"]
+[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/Basic/bat.tscn" id="9_0281a"]
+[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/Basic/spinner.tscn" id="10_eiqy7"]
 [ext_resource type="PackedScene" uid="uid://cfkbwf5sxpuiu" path="res://Areas/Area-Items/Door.tscn" id="11_0281a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eiqy7"]

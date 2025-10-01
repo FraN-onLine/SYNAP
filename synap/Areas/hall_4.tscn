@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="6_hqx7m"]
 [ext_resource type="PackedScene" uid="uid://bw1bxay158sp0" path="res://Characters/Hedler/Hedler.tscn" id="7_iwbq1"]
 [ext_resource type="PackedScene" uid="uid://b0lybiuxex4dr" path="res://Event-Nodes/mob_spawner.tscn" id="8_cxwqa"]
-[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/slime.tscn" id="9_p08dc"]
-[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/bat.tscn" id="10_4rd30"]
-[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/spinner.tscn" id="11_nmpdq"]
+[ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/Basic/slime.tscn" id="9_p08dc"]
+[ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/Basic/bat.tscn" id="10_4rd30"]
+[ext_resource type="PackedScene" uid="uid://bj5onwih4tp4g" path="res://Enemies/Basic/spinner.tscn" id="11_nmpdq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eiqy7"]
 texture = ExtResource("1_4btod")

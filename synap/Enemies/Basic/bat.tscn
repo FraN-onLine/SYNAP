@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bf63iyn6i7ce0"]
 
-[ext_resource type="Script" uid="uid://mkcglpdhq7cp" path="res://Enemies/bat.gd" id="1_va2ne"]
+[ext_resource type="Script" uid="uid://mkcglpdhq7cp" path="res://Enemies/Basic/bat.gd" id="1_va2ne"]
 [ext_resource type="PackedScene" uid="uid://ds67jg2ay35um" path="res://Markers/Damage/damage_popup.tscn" id="2_i84q7"]
 [ext_resource type="Texture2D" uid="uid://c15a1dg6i1kpq" path="res://Assets/Enemies/Bat-Sheet.png" id="2_va2ne"]
 [ext_resource type="PackedScene" uid="uid://ygi0h704mijm" path="res://Markers/Healtbars/healthbar-enemy.tscn" id="4_0g1cs"]
