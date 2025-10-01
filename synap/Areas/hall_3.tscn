@@ -139,7 +139,7 @@ tile_set = SubResource("TileSet_fnuvu")
 
 [node name="Door" parent="." instance=ExtResource("2_m5csi")]
 position = Vector2(-74, -102)
-next_scene_path = "res://Areas/hall_3.tscn"
+next_scene_path = "res://Areas/hall_4.tscn"
 
 [node name="UI" parent="." instance=ExtResource("3_go8mx")]
 
