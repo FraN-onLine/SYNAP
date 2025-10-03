@@ -21,11 +21,14 @@ func skill():
 	attackState = AttackState.ATTACKING
 	sprite.play("skill")
 
-	await sprite.animation_finished
+	await await_animation_frame("skill", 4)
 
 	var lantern = Lantern.instantiate()
 	get_parent().add_child(lantern)
-	lantern.global_position = global_position
+	#slightly infront of where helder is facing
+	lantern.global_position = global_position + Vector2(20 if sprite.flip_h == false else -20, -5)
+	
+	await sprite.animation_finished
 
 	attackState = AttackState.IDLE
 	Partystate.can_switch = true
