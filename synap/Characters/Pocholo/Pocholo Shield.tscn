@@ -1,7 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://cp501d7tce6gh"]
+[gd_scene load_steps=16 format=3 uid="uid://cp501d7tce6gh"]
 
 [ext_resource type="Texture2D" uid="uid://xi1md3ucil23" path="res://Assets/Characters/Pocholo/Pocholo-Shield-Sheet.png" id="1_4id72"]
 [ext_resource type="Script" uid="uid://dtovguko6vq6l" path="res://Characters/Pocholo/pocholo_shield.gd" id="1_7u7sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3goya"]
+atlas = ExtResource("1_4id72")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc7g6"]
+atlas = ExtResource("1_4id72")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudca"]
+atlas = ExtResource("1_4id72")
+region = Rect2(640, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u7sf"]
 atlas = ExtResource("1_4id72")
@@ -43,6 +55,20 @@ region = Rect2(128, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3goya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc7g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudca")
+}],
+"loop": false,
+"name": &"break",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7u7sf")
 }, {
 "duration": 1.0,
@@ -71,7 +97,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nan0g")
 }, {
-"duration": 3.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_y8vr4")
 }],
 "loop": false,

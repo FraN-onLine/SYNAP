@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnibrhxqdxgds"]
+[gd_scene load_steps=6 format=3 uid="uid://dnibrhxqdxgds"]
 
 [ext_resource type="Texture2D" uid="uid://destmfiwtaoik" path="res://Assets/Characters/Hedler/Hedler-Skill-Icon.png" id="1_sn0nn"]
 [ext_resource type="Script" uid="uid://4gonvby4j2bd" path="res://UI/skill_icon.gd" id="1_yb1fc"]
+[ext_resource type="FontFile" uid="uid://bgrgca3qc6dxo" path="res://Assets/Silkscreen/Silkscreen-Regular.ttf" id="3_7v3vo"]
 
 [sub_resource type="Gradient" id="Gradient_7v3vo"]
 offsets = PackedFloat32Array(0.985915, 0.992958, 1)
@@ -46,4 +47,25 @@ offset_left = 1.0
 offset_top = 56.0
 offset_right = 129.0
 offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("3_7v3vo")
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 40.0
+offset_top = 129.0
+offset_right = 89.0
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_7v3vo")
+text = "E"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 131.0
+offset_right = 82.0
+offset_bottom = 151.0
+metadata/_edit_lock_ = true

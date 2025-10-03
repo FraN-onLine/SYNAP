@@ -12,4 +12,6 @@ func play_mitigated_anim() -> void:
 	sprite.play("idle")
 	Partystate.is_in_immunity_state = false
 	if Partystate.damage_immune_triggers <= 0:
+		sprite.play("break")
+		await sprite.animation_finished
 		queue_free()
