@@ -240,3 +240,7 @@ func die() -> void:
 	await sprite.animation_finished
 	character_data.emit_signal("died")
 	queue_free()  # or handle respawn here
+
+func await_animation_frame(anim_name: String, target_frame: int) -> void:
+	while sprite.animation == anim_name and sprite.frame < target_frame:
+		await get_tree().process_frame

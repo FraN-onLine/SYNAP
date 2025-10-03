@@ -56,8 +56,9 @@ func _init_all_slots() -> void:
 
 		var data = inst.character_data
 		# connect to death
-		if not data.is_connected("died", Callable(self, "_on_character_died")):
-			data.connect("died", Callable(self, "_on_character_died").bind(inst))
+		if data:
+			if not data.is_connected("died", Callable(self, "_on_character_died")):
+				data.connect("died", Callable(self, "_on_character_died").bind(inst))
 
 		slots.append({
 			"scene": charac,

@@ -1,7 +1,6 @@
 [gd_scene load_steps=75 format=3 uid="uid://2ntr564jryxc"]
 
-[ext_resource type="Script" uid="uid://jyfjoj4sjn8c" path="res://Characters/Eury/eury.gd" id="1_vg30c"]
-[ext_resource type="Texture2D" uid="uid://dhmuuud8smxm1" path="res://Assets/Characters/Simone/Simone-face.png" id="2_2uokj"]
+[ext_resource type="Script" uid="uid://lxb008h3whsq" path="res://Characters/Simone/simone.gd" id="1_vg7h8"]
 [ext_resource type="Resource" uid="uid://djovf8gttkylk" path="res://Characters/Simone/04_Simone.tres" id="2_u34w4"]
 [ext_resource type="Texture2D" uid="uid://clnkluiengmrd" path="res://Assets/Characters/Simone/Simone-Sheet.png" id="2_vg7h8"]
 
@@ -477,7 +476,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"skill",
-"speed": 8.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -515,19 +514,22 @@ size = Vector2(39.875, 22.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vve8e"]
 size = Vector2(61, 24.9063)
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_2uokj"]
+points = PackedVector2Array(20.5, 5, -31.5, 5, -30.5, -1, 20.5, -19, 20.5, -2)
+
 [node name="Simone" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-script = ExtResource("1_vg30c")
+script = ExtResource("1_vg7h8")
 character_data = ExtResource("2_u34w4")
-unit_name = "Simone"
-character_profile = ExtResource("2_2uokj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.984375, 0.984375)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"death"
+animation = &"skill"
 autoplay = "idle"
+frame = 13
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)
@@ -562,3 +564,11 @@ collision_mask = 3
 position = Vector2(2.5, 5)
 shape = SubResource("RectangleShape2D_vve8e")
 disabled = true
+
+[node name="Skill" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skill"]
+position = Vector2(12.5, 12)
+shape = SubResource("ConvexPolygonShape2D_2uokj")
