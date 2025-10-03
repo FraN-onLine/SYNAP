@@ -1,53 +1,78 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp501d7tce6gh"]
+[gd_scene load_steps=13 format=3 uid="uid://cp501d7tce6gh"]
 
 [ext_resource type="Texture2D" uid="uid://xi1md3ucil23" path="res://Assets/Characters/Pocholo/Pocholo-Shield-Sheet.png" id="1_4id72"]
 [ext_resource type="Script" uid="uid://dtovguko6vq6l" path="res://Characters/Pocholo/pocholo_shield.gd" id="1_7u7sf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xhmv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u7sf"]
 atlas = ExtResource("1_4id72")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xnn37"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nuvd"]
 atlas = ExtResource("1_4id72")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xytc8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnagb"]
 atlas = ExtResource("1_4id72")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7emn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ccf"]
 atlas = ExtResource("1_4id72")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1gui8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob7sn"]
 atlas = ExtResource("1_4id72")
 region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh7sh"]
+atlas = ExtResource("1_4id72")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyt3u"]
+atlas = ExtResource("1_4id72")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nan0g"]
+atlas = ExtResource("1_4id72")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8vr4"]
+atlas = ExtResource("1_4id72")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u7sf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6xhmv")
+"texture": SubResource("AtlasTexture_7u7sf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nuvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnagb")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xnn37")
+"texture": SubResource("AtlasTexture_r1ccf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xytc8")
+"texture": SubResource("AtlasTexture_ob7sn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j7emn")
+"texture": SubResource("AtlasTexture_qh7sh")
 }, {
-"duration": 1.8,
-"texture": SubResource("AtlasTexture_1gui8")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyt3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nan0g")
 }, {
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_6xhmv")
+"texture": SubResource("AtlasTexture_y8vr4")
 }],
 "loop": false,
 "name": &"mitigated",
@@ -60,5 +85,5 @@ script = ExtResource("1_7u7sf")
 [node name="Pocholo\'s Shield" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7u7sf")
 animation = &"mitigated"
-frame = 4
+frame = 5
 frame_progress = 1.0
