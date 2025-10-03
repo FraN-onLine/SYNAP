@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="3_5bv61"]
 [ext_resource type="PackedScene" uid="uid://2ntr564jryxc" path="res://Characters/Simone/Simone.tscn" id="4_6ow47"]
 [ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="5_0281a"]
-[ext_resource type="PackedScene" uid="uid://bw1bxay158sp0" path="res://Characters/Hedler/Hedler.tscn" id="6_hwokv"]
+[ext_resource type="PackedScene" uid="uid://bpsuso7fninag" path="res://Characters/Ethos/Ethos.tscn" id="7_0281a"]
 [ext_resource type="PackedScene" uid="uid://b0lybiuxex4dr" path="res://Event-Nodes/mob_spawner.tscn" id="7_fnuvu"]
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/Basic/slime.tscn" id="8_6ow47"]
 [ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/Basic/bat.tscn" id="9_0281a"]
@@ -143,7 +143,7 @@ next_scene_path = "res://Areas/hall_3.tscn"
 [node name="UI" parent="." instance=ExtResource("2_7s7j7")]
 
 [node name="CharacterManager" parent="." instance=ExtResource("3_5bv61")]
-character_scenes = Array[PackedScene]([ExtResource("4_6ow47"), ExtResource("5_0281a"), ExtResource("6_hwokv")])
+character_scenes = Array[PackedScene]([ExtResource("4_6ow47"), ExtResource("5_0281a"), ExtResource("7_0281a")])
 
 [node name="SpawnPoint" parent="CharacterManager" index="0"]
 position = Vector2(-340, -89)

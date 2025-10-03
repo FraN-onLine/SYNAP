@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="char_data" load_steps=3 format=3 uid="uid://b5lolflavbmd1"]
+
+[ext_resource type="Script" uid="uid://d1a6l6gvd7616" path="res://Characters/character_resource.gd" id="1_tx1u0"]
+[ext_resource type="Texture2D" uid="uid://ddd2e6w8u2d2f" path="res://Assets/Characters/Ethos/Ethos-face.png" id="1_uajc0"]
+
+[resource]
+script = ExtResource("1_tx1u0")
+obtained = true
+is_dead = false
+unit_name = "Ethos"
+character_profile = ExtResource("1_uajc0")
+slot_index = 0
+speed = 150.0
+gravity = 900.0
+attack_cooldown = 0.15
+skill_cooldown = 2.5
+attack_damage = Array[int]([6, 7])
+crit_rate = 0.05
+MaxHP = 400
+HP = 400
+combo_count = 2
+metadata/_custom_type_script = "uid://d1a6l6gvd7616"

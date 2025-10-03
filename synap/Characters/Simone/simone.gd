@@ -49,8 +49,9 @@ func _on_launch_hitbox_body_entered(body: Node) -> void:
 			#launch enemy
 			i = 0
 			while i != 12:
-				i += 1
-				body.global_position.y -= i
-				#push away from player's direction
-				body.global_position.x += global_position.direction_to(body.global_position).x * 5
-				await get_tree().create_timer(0.012).timeout
+				if body:
+					i += 1
+					body.global_position.y -= i
+					#push away from player's direction
+					body.global_position.x += global_position.direction_to(body.global_position).x * 5
+					await get_tree().create_timer(0.012).timeout

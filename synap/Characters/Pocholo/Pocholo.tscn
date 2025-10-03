@@ -360,10 +360,8 @@ character_profile = ExtResource("3_ab7iu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_f4bps")
-animation = &"skill"
+animation = &"dash"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 4.5)
