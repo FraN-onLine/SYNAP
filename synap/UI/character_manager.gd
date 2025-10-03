@@ -23,6 +23,8 @@ func _ready() -> void:
 	# make sure starting index is valid
 	if slots.size() > 0:
 		starting_index = clamp(starting_index, 0, slots.size() - 1)
+		# 🟡 Wait a frame to ensure everything is fully initialized
+		await get_tree().process_frame
 		_activate(starting_index, spawn.global_position)
 
 func _physics_process(_delta: float) -> void:
@@ -48,13 +50,18 @@ func _init_all_slots() -> void:
 			continue
 
 		var inst = charac.instantiate()
+		var data = inst.character_data
+
+		# 🟡 Skip dead characters on initialization (prevents broken slots)
+		if data and data.is_dead:
+			continue
+
 		add_child(inst)
 		_set_node_active(inst, false)
 		inst.visible = false
 		inst.global_position = spawn.global_position
 		inst.remove_from_group("player")
 
-		var data = inst.character_data
 		# connect to death
 		if data:
 			if not data.is_connected("died", Callable(self, "_on_character_died")):
@@ -116,10 +123,11 @@ func _activate(index: int, world_position: Vector2) -> void:
 		inst = slot["scene"].instantiate()
 		slot["instance"] = inst
 
-	inst.initialize_data()
-
+	# 🟡 Add to tree BEFORE calling initialize_data (fixes index 0 init bug)
 	if not inst.is_inside_tree():
 		add_child(inst)
+
+	inst.initialize_data()
 
 	inst.MaxHP = data.MaxHP
 	inst.HP = data.HP
@@ -145,6 +153,7 @@ func _on_character_died(inst: Node) -> void:
 	for i in range(slots.size()):
 		if slots[i] and slots[i]["instance"] == inst:
 			slots.remove_at(i)
+			print("removed")
 			break
 
 	# if all are dead
@@ -158,11 +167,11 @@ func _on_character_died(inst: Node) -> void:
 	# after removal, array is already shifted
 	# so we always switch to the new first slot
 	active_index = -1
+	await get_tree().create_timer(0.05).timeout
 	switch_to(0)
 
 	# update UI
 	player_UI.set_deployed_characters()
-
 
 # ---------------------------------------------------
 # HELPERS

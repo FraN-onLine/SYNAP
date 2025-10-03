@@ -235,12 +235,13 @@ func skill():
 
 func die() -> void:
 	is_dead = true
-	character_data.is_dead = true # <-- update resource
+	Partystate.can_switch = false
+	character_data.is_dead = true
 	sprite.play("death")
 	await sprite.animation_finished
 	character_data.emit_signal("died")
-	queue_free()  # or handle respawn here
-
+	Partystate.can_switch = true
+	
 func await_animation_frame(anim_name: String, target_frame: int) -> void:
 	while sprite.animation == anim_name and sprite.frame < target_frame:
 		await get_tree().process_frame

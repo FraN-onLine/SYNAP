@@ -1,3 +1,3 @@
 extends Node
 
-var current_room = 4
+var current_room = 1
