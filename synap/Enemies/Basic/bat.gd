@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	dash_cd_timer += delta
 
 	# Acquire player
-	if not player or not player.is_inside_tree():
+	if not player or not player.is_inside_tree() or not player.is_in_group("player"):
 		player = get_tree().get_first_node_in_group("player")
 		velocity = Vector2.ZERO
 		move_and_slide()

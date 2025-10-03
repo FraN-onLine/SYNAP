@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 
 	# Find player if not set
-	if not player or not player.is_inside_tree():
+	if not player or not player.is_inside_tree() or not player.is_in_group("player"):
 		player = get_tree().get_first_node_in_group("player")
 		return
 

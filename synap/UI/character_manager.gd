@@ -149,14 +149,28 @@ func _activate(index: int, world_position: Vector2) -> void:
 # ---------------------------------------------------
 
 func _on_character_died(inst: Node) -> void:
-	# find and remove the active slot
+	# 🛑 Disable collision & groups so enemies ignore the dead character
+	if inst is CollisionObject2D:
+		inst.set_collision_layer(0)
+		inst.set_collision_mask(0)
+
+	for child in inst.get_children():
+		if child is CollisionObject2D:
+			child.set_collision_layer(0)
+			child.set_collision_mask(0)
+
+	inst.remove_from_group("player")
+	inst.visible = false
+	_set_node_active(inst, false)
+
+	# 🧠 Remove the dead character from slots
 	for i in range(slots.size()):
 		if slots[i] and slots[i]["instance"] == inst:
 			slots.remove_at(i)
 			print("removed")
 			break
 
-	# if all are dead
+	# ☠️ If all are dead, handle game over
 	if slots.is_empty():
 		print("All characters dead! Game Over.")
 		active_character = null
@@ -164,13 +178,12 @@ func _on_character_died(inst: Node) -> void:
 		player_UI.set_deployed_characters()
 		return
 
-	# after removal, array is already shifted
-	# so we always switch to the new first slot
+	# 🔄 Auto-switch to the new first slot after a short delay
 	active_index = -1
 	await get_tree().create_timer(0.05).timeout
 	switch_to(0)
 
-	# update UI
+	# 🖼️ Update UI to reflect current roster
 	player_UI.set_deployed_characters()
 
 # ---------------------------------------------------
