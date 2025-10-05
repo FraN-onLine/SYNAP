@@ -1,12 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbxq1wriljqus"]
+[gd_scene load_steps=11 format=4 uid="uid://bbxq1wriljqus"]
 
 [ext_resource type="Texture2D" uid="uid://btqgbj81qa3t3" path="res://Assets/Areas/Room1-5TileMap.png" id="1_vx3eu"]
 [ext_resource type="PackedScene" uid="uid://cfkbwf5sxpuiu" path="res://Areas/Area-Items/Door.tscn" id="2_m5csi"]
 [ext_resource type="PackedScene" uid="uid://0kvvhlnsbhhk" path="res://UI/PlayerUI.tscn" id="3_go8mx"]
 [ext_resource type="PackedScene" uid="uid://lt1rpxa4mvbj" path="res://UI/character_manager.tscn" id="4_svan3"]
-[ext_resource type="PackedScene" uid="uid://2ntr564jryxc" path="res://Characters/Simone/Simone.tscn" id="5_kp585"]
-[ext_resource type="PackedScene" uid="uid://b8mdbcf4twky" path="res://Characters/Pocholo/Pocholo.tscn" id="6_hblxo"]
-[ext_resource type="PackedScene" uid="uid://bw1bxay158sp0" path="res://Characters/Hedler/Hedler.tscn" id="7_yocno"]
 [ext_resource type="PackedScene" uid="uid://b0lybiuxex4dr" path="res://Event-Nodes/mob_spawner.tscn" id="8_cms8y"]
 [ext_resource type="PackedScene" uid="uid://biqb6dv3vu0uf" path="res://Enemies/Basic/slime.tscn" id="9_igp7t"]
 [ext_resource type="PackedScene" uid="uid://bf63iyn6i7ce0" path="res://Enemies/Basic/bat.tscn" id="10_22l0w"]
@@ -144,7 +141,6 @@ next_scene_path = "res://Areas/hall_4.tscn"
 [node name="UI" parent="." instance=ExtResource("3_go8mx")]
 
 [node name="CharacterManager" parent="." instance=ExtResource("4_svan3")]
-character_scenes = Array[PackedScene]([ExtResource("5_kp585"), ExtResource("6_hblxo"), ExtResource("7_yocno")])
 
 [node name="SpawnPoint" parent="CharacterManager" index="0"]
 position = Vector2(-340, -89)

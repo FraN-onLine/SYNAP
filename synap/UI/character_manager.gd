@@ -2,30 +2,25 @@ extends Node2D
 class_name CharacterManager
 
 @onready var player_UI = $"../UI"
-
-@export var character_scenes: Array[PackedScene] = [] 
-@export_range(0, 2) var starting_index: int = 0
+@onready var spawn: Marker2D = $SpawnPoint
 
 var active_character: Node = null
 var active_index: int = -1
 var slots: Array = []  # [{ scene, instance, data }]
 
-@onready var spawn: Marker2D = $SpawnPoint
-
 signal active_character_changed(character: Node, index: int)
 
-# ---------------------------------------------------
-# LIFECYCLE
-# ---------------------------------------------------
-
 func _ready() -> void:
-	_init_all_slots()
-	# make sure starting index is valid
+	# Connect to Partystate updates
+	Partystate.connect("party_updated", Callable(self, "_on_party_updated"))
+
+	# Initialize from current party (in case it's already set before this loads)
+	_on_party_updated(Partystate.party)
+
+	# Activate starting character if any
 	if slots.size() > 0:
-		starting_index = clamp(starting_index, 0, slots.size() - 1)
-		# 🟡 Wait a frame to ensure everything is fully initialized
 		await get_tree().process_frame
-		_activate(starting_index, spawn.global_position)
+		_activate(0, spawn.global_position)
 
 func _physics_process(_delta: float) -> void:
 	if active_character and active_character.is_inside_tree():
@@ -40,19 +35,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		switch_to(2)
 
 # ---------------------------------------------------
-# SETUP
+# PARTY HANDLING (now driven by Partystate)
 # ---------------------------------------------------
 
-func _init_all_slots() -> void:
+func _on_party_updated(new_party: Array) -> void:
 	slots.clear()
-	for charac in character_scenes:
+
+	for charac in new_party:
 		if charac == null:
 			continue
 
 		var inst = charac.instantiate()
 		var data = inst.character_data
 
-		# 🟡 Skip dead characters on initialization (prevents broken slots)
 		if data and data.is_dead:
 			continue
 
@@ -62,7 +57,6 @@ func _init_all_slots() -> void:
 		inst.global_position = spawn.global_position
 		inst.remove_from_group("player")
 
-		# connect to death
 		if data:
 			if not data.is_connected("died", Callable(self, "_on_character_died")):
 				data.connect("died", Callable(self, "_on_character_died").bind(inst))
@@ -74,6 +68,11 @@ func _init_all_slots() -> void:
 		})
 
 	player_UI.set_deployed_characters()
+
+	# Re-select active character if needed
+	if active_index < 0 and slots.size() > 0:
+		switch_to(0)
+
 
 # ---------------------------------------------------
 # SWITCHING
