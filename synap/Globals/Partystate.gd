@@ -10,6 +10,8 @@ var current_shield
 @export var party: Array[PackedScene] = [preload("res://Characters/Pocholo/Pocholo.tscn"), null, null]
 var party_cooldowns = [0,0,0]
 
+var obtained_characters: Array[PackedScene] = []   # bench pool, can be unlimited
+
 signal damage_mitigated
 signal party_updated(new_party: Array)
 
@@ -41,3 +43,7 @@ func reparent_shield(new_parent: Node2D) -> void:
 func set_party(new_party: Array[PackedScene]) -> void:
 	party = new_party.duplicate()
 	emit_signal("party_updated", party)
+
+func unlock_character(char_scene: PackedScene) -> void:
+	if not obtained_characters.has(char_scene):
+		obtained_characters.append(char_scene)

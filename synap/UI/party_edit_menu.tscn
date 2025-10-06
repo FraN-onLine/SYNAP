@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dydq8gq5ron55"]
+
+[ext_resource type="Texture2D" uid="uid://bi5pyd3y7ojh5" path="res://Assets/Characters/Party Menu.png" id="1_7yu4b"]
+
+[node name="PartyEditMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PartyMenu" type="Sprite2D" parent="."]
+position = Vector2(593, 343)
+scale = Vector2(7.22266, 5.24805)
+texture = ExtResource("1_7yu4b")
