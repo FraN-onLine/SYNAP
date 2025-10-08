@@ -11,7 +11,7 @@ var current_shield
 var party_cooldowns = [0,0,0]
 
 var obtained_characters: Array[PackedScene] = []   # bench pool, can be unlimited
-var unlockable_characters: Array[PackedScene] = [preload("res://Characters/Hedler/Hedler.tscn", preload("res://Characters/Ethos/Ethos.tscn")]
+var unlockable_characters: Array[PackedScene] = [preload("res://Characters/Hedler/Hedler.tscn"), preload("res://Characters/Ethos/Ethos.tscn")]
 
 signal damage_mitigated
 signal party_updated(new_party: Array)
