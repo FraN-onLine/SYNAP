@@ -2,4 +2,4 @@
 
 Basically a Dungeon Crawling Rogue-like Game featuring a cast of characters you can obtain along the way to aid you against hordes of enemies  
 
-lol i wanna rest before i get burnt out, pretend today has a normal commit
+OH i miss that stupid face
