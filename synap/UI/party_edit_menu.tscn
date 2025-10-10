@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dydq8gq5ron55"]
+[gd_scene load_steps=3 format=3 uid="uid://dydq8gq5ron55"]
 
 [ext_resource type="Texture2D" uid="uid://bi5pyd3y7ojh5" path="res://Assets/Characters/Party Menu.png" id="1_7yu4b"]
+[ext_resource type="Script" uid="uid://df8vv2su4tdd6" path="res://UI/party_edit_menu.gd" id="1_y0adk"]
 
 [node name="PartyEditMenu" type="Control"]
 layout_mode = 3
@@ -9,8 +10,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y0adk")
 
 [node name="PartyMenu" type="Sprite2D" parent="."]
 position = Vector2(570, 354)
 scale = Vector2(7.22266, 5.69434)
 texture = ExtResource("1_7yu4b")
+
+[node name="BenchList" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_left = 126.0
+offset_top = 206.0
+offset_right = 766.0
+offset_bottom = 206.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BenchList"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 101.0
+offset_right = 766.0
+offset_bottom = 476.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "vcvcvcvcvcvcvc"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "vcvcvcvcvcvcvc"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "vcvcvcvcvcvcvc"
+
+[node name="CloseButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 920.0
+offset_top = 28.0
+offset_right = 1007.0
+offset_bottom = 103.0
