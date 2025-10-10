@@ -11,6 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PartyMenu" type="Sprite2D" parent="."]
-position = Vector2(593, 343)
-scale = Vector2(7.22266, 5.24805)
+position = Vector2(570, 354)
+scale = Vector2(7.22266, 5.69434)
 texture = ExtResource("1_7yu4b")
